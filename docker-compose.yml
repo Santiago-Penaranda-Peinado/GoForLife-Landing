@@ -1,0 +1,19 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  # Nombre de nuestro servicio (puedes llamarlo como quieras, 'app' es común)
+  app:
+    # Construye la imagen usando el Dockerfile en el directorio actual (.)
+    build: .
+    # Mapea el puerto 5173 del contenedor al puerto 5173 de tu máquina
+    ports:
+      - "5173:5173"
+    # Sincroniza tus archivos locales con los del contenedor
+    volumes:
+      # Sincroniza todo el proyecto (.), excepto node_modules
+      - .:/app
+      # Usa un volumen anónimo para los node_modules dentro del contenedor
+      # Esto evita que los node_modules de tu máquina local interfieran
+      - /app/node_modules

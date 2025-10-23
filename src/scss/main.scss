@@ -1,0 +1,14 @@
+// src/scss/main.scss
+@use 'partials/variables' as *; // <--- Actualizado
+
+// Reset básico y fuente temporal
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+// Aquí importaremos más partials después
+// @use 'partials/header';
+// @use 'partials/hero';
+// ...etc
