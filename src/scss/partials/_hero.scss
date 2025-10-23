@@ -1,0 +1,145 @@
+// src/scss/partials/_hero.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  margin-top: $header-height-initial;
+
+  @media (max-width: ($breakpoint-lg - 1)) {
+    margin-top: 0;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+.hero__video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  // Para video 1900x600 (formato horizontal)
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $black; // Fondo por si el video no carga
+
+  @include max-width($breakpoint-lg - 1) {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+  }
+}
+
+.hero__video {
+  // Para mantener la relación 1900x600 y centrar horizontalmente
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  
+  @include desktop {
+    // En desktop, aseguramos que ocupe todo el alto
+    height: 100%;
+    width: auto;
+    min-width: 100%;
+  }
+}
+
+.hero__video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba($black, 0.4), rgba($primary-color, 0.2));
+}
+
+.hero__mobile-content {
+  display: none;
+
+  @media (max-width: ($breakpoint-lg - 1)) {
+    display: block;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
+    color: $white;
+  }
+}
+
+.hero__content {
+  text-align: center;
+
+  .hero__title {
+    color: $white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba($black, 0.3);
+  }
+
+  .hero__description {
+    color: rgba($white, 0.9);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $white;
+  text-align: center;
+  opacity: 0.8;
+  transition: opacity $transition-speed-normal ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: ($breakpoint-lg - 1)) {
+    display: none;
+  }
+
+  span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .scroll-arrow {
+    width: 2px;
+    height: 20px;
+    background: $white;
+    margin: 0 auto;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: -3px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid $white;
+      border-bottom: 2px solid $white;
+      transform: rotate(45deg);
+    }
+  }
+}

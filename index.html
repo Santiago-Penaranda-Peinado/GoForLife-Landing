@@ -4,64 +4,249 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Go For Life México - Plantas Purificadoras 100% Rentables</title>
-  
+  <meta name="description" content="Plantas Purificadoras de Agua con tecnología de vanguardia. Negocio 100% rentable con garantía de 2 años. ¡Emprende con éxito!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="preloader__container">
+      <div class="preloader__logo">
+        <img src="/logo/goforlifeMexico-logo.png" alt="Go For Life México Logo" class="preloader__logo-img">
+      </div>
+      <div class="preloader__spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-dot"></div>
+      </div>
+      <div class="preloader__progress">
+        <div class="preloader__progress-bar">
+          <div class="preloader__progress-fill"></div>
+        </div>
+        <span class="preloader__progress-text">0%</span>
+      </div>
+      <div class="preloader__message">
+        <p>Preparando tu futuro negocio...</p>
+      </div>
+    </div>
+  </div>
 
   <div id="app">
-
+    <!-- Header -->
     <header id="header" class="site-header">
-      <div class="container">
-        <p style="color:white; text-align:center; padding: 1rem 0;">HEADER AQUÍ</p>
-      </div>
+      <nav class="nav">
+        <div class="container">
+          <div class="nav__content">
+            <a href="#hero" class="nav__logo">
+              <img src="/logo/goforlifeMexico-logo.png" alt="Go For Life México">
+            </a>
+            
+            <ul class="nav__menu">
+              <li><a href="#hero">Inicio</a></li>
+              <li><a href="#beneficios">Beneficios</a></li>
+              <li><a href="#modelos">Modelos</a></li>
+              <li><a href="#tecnologia">Tecnología</a></li>
+              <li><a href="#testimonios">Testimonios</a></li>
+              <li><a href="#contacto" class="btn btn--accent">Cotizar Ahora</a></li>
+            </ul>
+            
+            <button class="nav__toggle" aria-label="Abrir menú">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main>
+      <!-- Hero Section -->
+      <section id="hero" class="hero">
+        <div class="hero__video-container">
+          <video class="hero__video" playsinline autoplay muted loop>
+            <source src="/hero/goforlife-hero-background-1900x600.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento video.
+          </video>
+          <div class="hero__video-overlay"></div>
+        </div>
+        
+        <!-- Contenido solo visible en móvil -->
+        <div class="hero__mobile-content">
+          <div class="container">
+            <div class="hero__content">
+              <h1 class="hero__title">Invierte en tu Futuro: El Negocio del Agua Purificada</h1>
+              <p class="hero__description">
+                Únete a Go For Life y transforma tu vida con un modelo de negocio rentable, sostenible y de alta demanda en México.
+              </p>
+              <div class="hero__cta-group">
+                <a href="#contacto" class="btn btn--primary">Quiero Emprender</a>
+                <a href="#modelos" class="btn btn--outline">Ver Modelos</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <a href="#beneficios" class="hero__scroll-indicator">
+          <span>Scroll</span>
+          <div class="scroll-arrow"></div>
+        </a>
+      </section>
 
-      <section id="hero" class="hero-section">
+      <!-- Sección Beneficios -->
+      <section id="beneficios" class="section section--light">
         <div class="container">
-           <h1 style="color:white; text-align:center; padding: 10rem 0;">SECCIÓN HERO AQUÍ</h1>
+          <div class="section-header">
+            <span class="section-subtitle">Ventajas Exclusivas</span>
+            <h2 class="section-title">¿Por Qué Elegir Go For Life?</h2>
+            <p class="section-description">
+              Te ofrecemos más que un equipo, te brindamos un negocio completo y listo para triunfar.
+            </p>
+          </div>
+          
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-card__icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3>Garantía 2 Años</h3>
+              <p>Avalada por PROFECO, seguridad total en tu inversión.</p>
+            </div>
+            
+            <div class="benefit-card">
+              <div class="benefit-card__icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3>Tecnología Exclusiva</h3>
+              <p>Monedero electrónico y sistema automatizado único en el mercado.</p>
+            </div>
+            
+            <div class="benefit-card">
+              <div class="benefit-card__icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3>Rentabilidad Comprobada</h3>
+              <p>Retorno de inversión rápido y ganancias recurrentes.</p>
+            </div>
+            
+            <div class="benefit-card">
+              <div class="benefit-card__icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h3>Soporte 24/7</h3>
+              <p>Acompañamiento completo antes, durante y después.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="confianza" class="clients-section">
+      <!-- Sección Modelos -->
+      <section id="modelos" class="section">
         <div class="container">
-           <h2 style="text-align:center; padding: 4rem 0;">SECCIÓN CONFIANZA AQUÍ</h2>
+          <div class="section-header">
+            <span class="section-subtitle">Elige Tu Modelo</span>
+            <h2 class="section-title">2 Formas de Emprender</h2>
+          </div>
+          
+          <div class="models-grid">
+            <div class="model-card">
+              <div class="model-card__header">
+                <h3>Modelo Tradicional</h3>
+                <div class="model-card__price">Desde $63,000</div>
+              </div>
+              <div class="model-card__features">
+                <ul>
+                  <li><i class="fas fa-check"></i> Local con horario de servicio</li>
+                  <li><i class="fas fa-check"></i> Reparto a domicilio</li>
+                  <li><i class="fas fa-check"></i> Atención personalizada</li>
+                  <li><i class="fas fa-check"></i> Ganancias: $17K - $25K/mes</li>
+                </ul>
+              </div>
+              <div class="model-card__cta">
+                <a href="#contacto" class="btn btn--primary">Más Información</a>
+              </div>
+            </div>
+            
+            <div class="model-card model-card--featured">
+              <div class="model-card__badge">Más Popular</div>
+              <div class="model-card__header">
+                <h3>Ventanas Automáticas</h3>
+                <div class="model-card__price">Desde $83,000</div>
+              </div>
+              <div class="model-card__features">
+                <ul>
+                  <li><i class="fas fa-check"></i> Operación 24/7 automática</li>
+                  <li><i class="fas fa-check"></i> Sin empleados, sin horarios</li>
+                  <li><i class="fas fa-check"></i> Tecnología de vanguardia</li>
+                  <li><i class="fas fa-check"></i> Ganancias: $7K - $13K/mes</li>
+                </ul>
+              </div>
+              <div class="model-card__cta">
+                <a href="#contacto" class="btn btn--accent">Más Información</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="beneficios" class="benefits-section">
+      <!-- Sección Contacto -->
+      <section id="contacto" class="section section--accent">
         <div class="container">
-          <h2 style="text-align:center; padding: 4rem 0;">SECCIÓN BENEFICIOS AQUÍ</h2>
+          <div class="section-header">
+            <h2 class="section-title">¿Listo para Emprender?</h2>
+            <p class="section-description">
+              Contáctanos y recibe asesoría personalizada sin costo
+            </p>
+          </div>
+          
+          <div class="contact-content">
+            <form class="contact-form">
+              <div class="form-group">
+                <input type="text" placeholder="Nombre completo" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="Teléfono" required>
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <select required>
+                  <option value="">Modelo de interés</option>
+                  <option value="tradicional">Modelo Tradicional</option>
+                  <option value="automatico">Ventanas Automáticas</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn--primary btn--large">Solicitar Cotización</button>
+            </form>
+          </div>
         </div>
       </section>
-
-      <section id="modelos" class="models-section">
-        <div class="container">
-          <h2 style="text-align:center; padding: 4rem 0;">SECCIÓN MODELOS AQUÍ</h2>
-        </div>
-      </section>
-
-      <section id="galeria" class="gallery-section">
-        <div class="container">
-           <h2 style="text-align:center; padding: 4rem 0;">SECCIÓN GALERÍA AQUÍ</h2>
-        </div>
-      </section>
-
-      <section id="contacto" class="cta-final-section">
-        <div class="container">
-           <h2 style="color:white; text-align:center; padding: 4rem 0;">SECCIÓN CONTACTO AQUÍ</h2>
-        </div>
-      </section>
-
     </main>
 
-    <footer id="footer" class="site-footer">
+    <!-- Footer -->
+    <footer class="site-footer">
       <div class="container">
-         <p style="color:grey; text-align:center; padding: 1rem 0;">FOOTER AQUÍ</p>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img src="/logo/goforlifeMexico-logo.png" alt="Go For Life México" class="footer-logo">
+            <p>Transformando vidas a través del negocio del agua purificada.</p>
+          </div>
+          <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> 01-800-GOFORLIFE</p>
+            <p><i class="fas fa-envelope"></i> info@goforlife.mx</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Go For Life México. Todos los derechos reservados.</p>
+        </div>
       </div>
     </footer>
-
-    </div> </body>
+  </div>
+</body>
 </html>

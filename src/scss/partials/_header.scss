@@ -1,0 +1,121 @@
+// src/scss/partials/_header.scss
+@use 'variables' as *;
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  background: rgba($black, 0.9);
+  backdrop-filter: blur(10px);
+  transition: all $transition-speed-normal ease;
+
+  &.scrolled {
+    padding: 0.75rem 0;
+    background: rgba($black, 0.95);
+    box-shadow: $box-shadow-medium;
+  }
+}
+
+.nav {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    img {
+      height: 45px;
+      transition: height $transition-speed-normal ease;
+
+      .scrolled & {
+        height: 35px;
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+
+    @media (max-width: ($breakpoint-lg - 1)) {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: rgba($black, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      transition: right $transition-speed-normal ease;
+
+      &.active {
+        right: 0;
+      }
+    }
+
+    a {
+      color: $white;
+      font-weight: 500;
+      transition: color $transition-speed-normal ease;
+
+      &:hover {
+        color: $accent-color;
+      }
+
+      &.btn {
+        margin-left: 1rem;
+
+        @media (max-width: ($breakpoint-lg - 1)) {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+
+  &__toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+
+    @media (max-width: ($breakpoint-lg - 1)) {
+      display: flex;
+    }
+
+    span {
+      width: 25px;
+      height: 2px;
+      background: $white;
+      margin: 3px 0;
+      transition: all $transition-speed-normal ease;
+
+      .active & {
+        &:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+body.no-scroll {
+  overflow: hidden;
+}

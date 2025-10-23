@@ -1,0 +1,92 @@
+// src/scss/partials/_models.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.models {
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+.model-card {
+  background: $white;
+  border-radius: $border-radius;
+  padding: 2rem;
+  box-shadow: $box-shadow-soft;
+  position: relative;
+  transition: transform $transition-speed-normal ease, box-shadow $transition-speed-normal ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-medium;
+  }
+
+  &--featured {
+    border: 2px solid $accent-color;
+    transform: scale(1.05);
+
+    @include max-width($breakpoint-md) {
+      transform: none;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: -10px;
+    right: 2rem;
+    background: $accent-color;
+    color: $black;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $gray-border;
+
+    h3 {
+      color: $black;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  &__features {
+    margin-bottom: 2rem;
+
+    ul {
+      list-style: none;
+
+      li {
+        @include flex-center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        color: $gray-dark;
+
+        i {
+          color: $accent-color;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  &__cta {
+    text-align: center;
+  }
+}

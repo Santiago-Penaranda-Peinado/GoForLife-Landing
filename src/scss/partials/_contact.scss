@@ -1,0 +1,35 @@
+// src/scss/partials/_contact.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.contact {
+  &-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &-form {
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      input, select {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid $gray-border;
+        border-radius: $border-radius;
+        font-family: $font-secondary;
+        font-size: 1rem;
+        transition: border-color $transition-speed-normal ease;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+// src/scss/partials/_variables.scss
+
+// ==========================================================================
+// Variables de Diseño - Go For Life Landing
+// ==========================================================================
+
+// ---- Paleta de Colores ----
+$primary-color: #0087C4;   // Azul principal
+$accent-color: #A8CF45;    // Verde lima acento
+$secondary-color: #4CC3C1; // Verde azulado secundario
+
+$white: #ffffff;
+$black: #1a1a1a;
+$gray-dark: #4f4f4f;
+$gray-medium: #777777;
+$gray-light: #f8f9fa;
+$gray-border: #e6e6e6;
+
+// ---- Tipografía ----
+$font-primary: 'Rubik', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+$base-font-size: 16px;
+$base-line-height: 1.6;
+
+// ---- Breakpoints ----
+$breakpoint-xs: 480px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// ---- Layout ----
+$container-max-width: 1200px;
+$container-padding-x: 1rem;
+
+// ---- Header ----
+$header-height-initial: 6rem;
+$header-height-scrolled: 4.5rem;
+
+// ---- Transiciones y efectos ----
+$transition-speed-fast: 0.2s;
+$transition-speed-normal: 0.3s;
+$transition-speed-slow: 0.5s;
+$border-radius: 8px;
+$box-shadow-soft: 0 5px 15px rgba($black, 0.05);
+$box-shadow-medium: 0 10px 30px rgba($black, 0.1);
+$box-shadow-large: 0 20px 50px rgba($black, 0.15);
