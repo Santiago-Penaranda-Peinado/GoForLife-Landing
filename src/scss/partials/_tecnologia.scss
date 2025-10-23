@@ -1,0 +1,108 @@
+// src/scss/partials/_tecnologia.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.tecnologia-grid {
+  display: grid;
+  grid-template-columns: 1fr; // Mobile-first
+  gap: 3rem;
+  align-items: center;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.tecnologia__image-content {
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius;
+  }
+}
+
+// Estilo para el feature principal
+.feature-item--main {
+  background: $white;
+  padding: 2rem;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-soft;
+  border: 1px solid rgba($primary-color, 0.1);
+  margin-bottom: 2.5rem; // Espacio antes de la lista
+
+  .feature-item__icon {
+    background: linear-gradient(135deg, $primary-color, $accent-color);
+    color: $white;
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+    // Ajuste para el ícono principal
+    i { margin-top: 0; }
+  }
+
+  .feature-item__text {
+    h3 {
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Lista de features secundarios
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+// Estilo base para CADA item (principal y secundarios)
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+
+  // --- Animación de Scroll ---
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  // --- Fin Animación ---
+
+  &__icon {
+    @include flex-center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba($primary-color, 0.1);
+    color: $primary-color;
+    font-size: 1.25rem;
+
+    i {
+      margin-top: 2px; // Pequeño ajuste
+    }
+  }
+
+  &__text {
+    h4 {
+      color: $black;
+      margin-bottom: 0.25rem;
+      font-size: 1.15rem;
+    }
+    p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  }
+}

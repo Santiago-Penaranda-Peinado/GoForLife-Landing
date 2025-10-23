@@ -66,41 +66,40 @@
 
     <main>
       <!-- Hero Section -->
-      <section id="hero" class="hero">
-        <div class="hero__video-container">
-          <video class="hero__video" playsinline autoplay muted loop>
-            <source src="/hero/goforlife-hero-background-1900x600.mp4" type="video/mp4">
-            Tu navegador no soporta el elemento video.
-          </video>
-          <div class="hero__video-overlay"></div>
-        </div>
-        
-        <!-- Contenido solo visible en móvil -->
-        <div class="hero__mobile-content">
-          <div class="container">
-            <div class="hero__content">
-              <h1 class="hero__title">Invierte en tu Futuro: El Negocio del Agua Purificada</h1>
-              <p class="hero__description">
-                Únete a Go For Life y transforma tu vida con un modelo de negocio rentable, sostenible y de alta demanda en México.
-              </p>
-              <div class="hero__cta-group">
-                <a href="#contacto" class="btn btn--primary">Quiero Emprender</a>
-                <a href="#modelos" class="btn btn--outline">Ver Modelos</a>
-              </div>
-            </div>
+        <section id="hero" class="hero">
+    
+          <div class="hero__background-container">
+              <video class="hero__video" playsinline autoplay muted loop poster="/hero/goforlife-hero-poster.jpg">
+                  <source src="/hero/goforlife-hero-background-1900x600.mp4" type="video/mp4">
+                  Tu navegador no soporta el elemento video.
+              </video>
+              <div class="hero__mobile-background"></div>
+              <div class="hero__overlay"></div>
           </div>
-        </div>
-        
-        <a href="#beneficios" class="hero__scroll-indicator">
-          <span>Scroll</span>
-          <div class="scroll-arrow"></div>
-        </a>
+          
+          <div class="container hero__container">
+              <div class="hero__content">
+                  <h1 class="hero__title">Invierte en tu Futuro: El Negocio del Agua Purificada</h1>
+                  <p class="hero__description">
+                      Únete a Go For Life y transforma tu vida con un modelo de negocio rentable, sostenible y de alta demanda en México.
+                  </p>
+                  <div class="hero__cta-group">
+                      <a href="#contacto" class="btn btn--primary">Quiero Emprender</a>
+                      <a href="#modelos" class="btn btn--outline">Ver Modelos</a>
+                  </div>
+              </div>
+          </div>
+          
+          <a href="#beneficios" class="hero__scroll-indicator">
+              <span>Scroll</span>
+              <div class="scroll-arrow"></div>
+          </a>
       </section>
 
       <!-- Sección Beneficios -->
-      <section id="beneficios" class="section section--light">
+      <section id="beneficios" class="section benefits-section">
         <div class="container">
-          <div class="section-header">
+          <div class="benefits-header">
             <span class="section-subtitle">Ventajas Exclusivas</span>
             <h2 class="section-title">¿Por Qué Elegir Go For Life?</h2>
             <p class="section-description">
@@ -110,87 +109,264 @@
           
           <div class="benefits-grid">
             <div class="benefit-card">
+              <div class="benefit-card__number">01</div>
               <div class="benefit-card__icon">
                 <i class="fas fa-shield-alt"></i>
               </div>
               <h3>Garantía 2 Años</h3>
-              <p>Avalada por PROFECO, seguridad total en tu inversión.</p>
+              <p>Avalada por PROFECO, seguridad total en tu inversión con cobertura extendida.</p>
             </div>
             
             <div class="benefit-card">
+              <div class="benefit-card__number">02</div>
               <div class="benefit-card__icon">
                 <i class="fas fa-bolt"></i>
               </div>
               <h3>Tecnología Exclusiva</h3>
-              <p>Monedero electrónico y sistema automatizado único en el mercado.</p>
+              <p>Monedero electrónico y sistema automatizado único en el mercado mexicano.</p>
             </div>
             
             <div class="benefit-card">
+              <div class="benefit-card__number">03</div>
               <div class="benefit-card__icon">
                 <i class="fas fa-chart-line"></i>
               </div>
               <h3>Rentabilidad Comprobada</h3>
-              <p>Retorno de inversión rápido y ganancias recurrentes.</p>
+              <p>Retorno de inversión rápido y ganancias recurrentes garantizadas.</p>
             </div>
             
             <div class="benefit-card">
+              <div class="benefit-card__number">04</div>
               <div class="benefit-card__icon">
                 <i class="fas fa-headset"></i>
               </div>
               <h3>Soporte 24/7</h3>
-              <p>Acompañamiento completo antes, durante y después.</p>
+              <p>Acompañamiento completo antes, durante y después de tu instalación.</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Sección Modelos -->
-      <section id="modelos" class="section">
+      <section id="modelos" class="section models-section">
         <div class="container">
-          <div class="section-header">
+          <div class="models-header">
             <span class="section-subtitle">Elige Tu Modelo</span>
             <h2 class="section-title">2 Formas de Emprender</h2>
+            <p class="section-description">
+              Selecciona el modelo que mejor se adapte a tu visión de negocio y presupuesto
+            </p>
           </div>
           
           <div class="models-grid">
+            <!-- Modelo Tradicional -->
             <div class="model-card">
               <div class="model-card__header">
                 <h3>Modelo Tradicional</h3>
-                <div class="model-card__price">Desde $63,000</div>
+                <div class="model-card__price">$63,000</div>
               </div>
               <div class="model-card__features">
                 <ul>
-                  <li><i class="fas fa-check"></i> Local con horario de servicio</li>
-                  <li><i class="fas fa-check"></i> Reparto a domicilio</li>
-                  <li><i class="fas fa-check"></i> Atención personalizada</li>
-                  <li><i class="fas fa-check"></i> Ganancias: $17K - $25K/mes</li>
+                  <li><i class="fas fa-store"></i><span>Local con horario de servicio</span></li>
+                  <li><i class="fas fa-truck"></i><span>Reparto a domicilio incluido</span></li>
+                  <li><i class="fas fa-users"></i><span>Atención personalizada al cliente</span></li>
+                  <li><i class="fas fa-chart-line"></i><span>Ganancias: $17K - $25K/mes</span></li>
                 </ul>
               </div>
               <div class="model-card__cta">
-                <a href="#contacto" class="btn btn--primary">Más Información</a>
+                <a href="#contacto" class="btn btn--primary">Solicitar Información</a>
               </div>
             </div>
             
+            <!-- Modelo Destacado - Con Ribbon Lateral -->
             <div class="model-card model-card--featured">
-              <div class="model-card__badge">Más Popular</div>
               <div class="model-card__header">
                 <h3>Ventanas Automáticas</h3>
-                <div class="model-card__price">Desde $83,000</div>
+                <div class="model-card__price">$83,000</div>
               </div>
               <div class="model-card__features">
                 <ul>
-                  <li><i class="fas fa-check"></i> Operación 24/7 automática</li>
-                  <li><i class="fas fa-check"></i> Sin empleados, sin horarios</li>
-                  <li><i class="fas fa-check"></i> Tecnología de vanguardia</li>
-                  <li><i class="fas fa-check"></i> Ganancias: $7K - $13K/mes</li>
+                  <li><i class="fas fa-robot"></i><span>Operación 24/7 completamente automática</span></li>
+                  <li><i class="fas fa-user-clock"></i><span>Sin empleados, sin horarios fijos</span></li>
+                  <li><i class="fas fa-microchip"></i><span>Tecnología de vanguardia exclusiva</span></li>
+                  <li><i class="fas fa-wallet"></i><span>Ganancias: $7K - $13K/mes</span></li>
                 </ul>
               </div>
               <div class="model-card__cta">
-                <a href="#contacto" class="btn btn--accent">Más Información</a>
+                <a href="#contacto" class="btn btn--accent">¡Quiero Este Modelo!</a>
               </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <section id="tecnologia" class="section section--light">
+        <div class="container">
+          
+          <div class="section-header">
+            <span class="section-subtitle">Innovación Exclusiva</span>
+            <h2 class="section-title">La Tecnología que Revoluciona tu Negocio</h2>
+            <p class="section-description">
+              Desarrollamos nuestra propia tecnología para darte una ventaja competitiva, fidelizar a tus clientes y facilitar tu operación.
+            </p>
+          </div>
+
+          <div class="tecnologia-grid">
+            
+            <div class="tecnologia__image-content">
+              <img src="/images/ventanas-despachadoras-de-agua.webp" alt="Ventanas Despachadoras de Agua Go For Life">
+            </div>
+
+            <div class="tecnologia__features-content">
+              
+              <div class="feature-item feature-item--main">
+                <div class="feature-item__icon">
+                  <i class="fas fa-credit-card"></i>
+                </div>
+                <div class="feature-item__text">
+                  <h3>Monedero Electrónico (Cashback)</h3>
+                  <p>
+                    Somos los únicos en el mercado con un sistema de monedero electrónico que permite a tus clientes recargar saldo y recibir promociones y <strong>cashback</strong>, asegurando su lealtad y aumentando tus ventas.
+                  </p>
+                </div>
+              </div>
+
+              <div class="features-list">
+                <div class="feature-item">
+                  <div class="feature-item__icon">
+                    <i class="fas fa-desktop"></i>
+                  </div>
+                  <div class="feature-item__text">
+                    <h4>Interfaz Digital Intuitiva</h4>
+                    <p>
+                      Una pantalla full-color de 5 pulgadas guía a tus clientes paso a paso, eliminando la necesidad de vinilos externos.
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="feature-item">
+                  <div class="feature-item__icon">
+                    <i class="fas fa-chart-pie"></i>
+                  </div>
+                  <div class="feature-item__text">
+                    <h4>Reportes de Venta</h4>
+                    <p>
+                      Obtén reportes detallados de ventas directamente desde el equipo para optimizar tu negocio y saber qué está pasando.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="feature-item">
+                  <div class="feature-item__icon">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div class="feature-item__text">
+                    <h4>Desarrollo Propio</h4>
+                    <p>
+                      No dependemos de terceros. Nuestra tecnología es un desarrollo propio, lo que garantiza calidad, respaldo y soporte técnico directo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div> 
+          </div> 
+        </div> 
+      </section>
+
+      <!-- Sección Testimonios -->
+      <section id="testimonios" class="section section--light">
+        <div class="container">
+          
+          <div class="section-header">
+            <span class="section-subtitle">Voces de Éxito</span>
+            <h2 class="section-title">Lo Que Nuestros Clientes Dicen</h2>
+            <p class="section-description">
+              No solo lo decimos nosotros. Miles de emprendedores ya están generando ganancias con Go For Life.
+            </p>
+          </div>
+
+          <div class="testimonial-slider" id="testimonial-slider-container">
+            
+            <div class="testimonial-slider__track" id="testimonial-track">
+
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <div class="testimonial-card__rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="testimonial-card__quote">
+                    "Mi ventana automática opera 24/7. Las ganancias son constantes y no tengo que estar ahí. El monedero electrónico es un éxito con mis clientes."
+                  </p>
+                  <div class="testimonial-card__author">
+                    <img src="/assets/images/placeholder-cliente-1.jpg" alt="Cliente Juan C.">
+                    <div class="testimonial-card__author-info">
+                      <h4>Juan C.</h4>
+                      <span>Emprendedor en Guadalajara</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <div class="testimonial-card__rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="testimonial-card__quote">
+                    "El equipo de reparto es robusto y el soporte técnico de Go For Life es inigualable. Me ayudaron con todo el arranque y la capacitación fue excelente."
+                  </p>
+                  <div class="testimonial-card__author">
+                    <img src="/assets/images/placeholder-cliente-2.jpg" alt="Cliente María F.">
+                    <div class="testimonial-card__author-info">
+                      <h4>María F.</h4>
+                      <span>Negocio Familiar, Monterrey</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="testimonial-slide">
+                <div class="testimonial-card">
+                  <div class="testimonial-card__rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
+                  <p class="testimonial-card__quote">
+                    "La calidad del agua es excelente y la garantía de 2 años me dio la confianza que necesitaba. Es un negocio 100% rentable como lo prometen."
+                  </p>
+                  <div class="testimonial-card__author">
+                    <img src="/assets/images/placeholder-cliente-3.jpg" alt="Cliente Carlos S.">
+                    <div class="testimonial-card__author-info">
+                      <h4>Carlos S.</h4>
+                      <span>Inversionista, CDMX</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div> <div class="testimonial-slider__nav">
+              <button class="nav-arrow nav-arrow--prev" id="testimonial-prev" aria-label="Testimonio anterior">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="nav-arrow nav-arrow--next" id="testimonial-next" aria-label="Siguiente testimonio">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+
+          </div> 
+        </div> 
       </section>
 
       <!-- Sección Contacto -->

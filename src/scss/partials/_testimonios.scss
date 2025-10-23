@@ -1,0 +1,141 @@
+// src/scss/partials/_testimonios.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.testimonial-slider {
+  position: relative;
+  // Usamos max-width para centrar el slider
+  max-width: 800px; 
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.testimonial-slider__track {
+  display: flex;
+  // Transición suave para el movimiento del slider
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.testimonial-slide {
+  flex: 0 0 100%; // Cada slide ocupa el 100%
+  width: 100%;
+  padding: 1rem; // Espacio para que no se peguen las sombras
+  
+  // Ocultamos slides que no están activas para accesibilidad
+  &:not(.is-active) {
+    visibility: hidden;
+  }
+}
+
+.testimonial-card {
+  // Estilo "premium" glassmorphism
+  background: linear-gradient(135deg, $white 0%, lighten($primary-color, 48%) 100%);
+  border-radius: $border-radius; //
+  padding: 2.5rem 3rem;
+  border: 1px solid rgba($primary-color, 0.1);
+  box-shadow: $box-shadow-medium; //
+  position: relative;
+  text-align: center;
+  
+  // Icono de comillas
+  &::before {
+    content: '\f10d'; // Icono de comillas (FontAwesome)
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 3rem;
+    color: rgba($primary-color, 0.1);
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+  }
+
+  &__rating {
+    margin-bottom: 1.5rem;
+    i {
+      color: #FFC107; // Un amarillo estrella
+      font-size: 1.1rem;
+      margin: 0 0.1rem;
+    }
+  }
+
+  &__quote {
+    font-size: 1.25rem;
+    font-family: $font-primary;
+    font-style: italic;
+    color: $gray-dark;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__author {
+    @include flex-center; //
+    gap: 1rem;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid $white;
+      box-shadow: 0 4px 10px rgba($black, 0.1);
+    }
+  }
+  
+  &__author-info {
+    text-align: left;
+    h4 {
+      color: $black;
+      margin-bottom: 0.1rem;
+      font-size: 1.1rem;
+    }
+    span {
+      color: $gray-medium;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Navegación (Botones)
+.testimonial-slider__nav {
+  // Ocultos en móvil (se puede usar swipe, aunque este JS no lo incluye)
+  display: none; 
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.nav-arrow {
+  @include button-reset; //
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  // Estilo "glass"
+  background: rgba($white, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba($white, 0.3);
+  
+  color: $primary-color;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: all $transition-speed-normal ease;
+  z-index: 10;
+  
+  &:hover {
+    background: $primary-color;
+    color: $white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: $box-shadow-medium;
+  }
+
+  &--prev {
+    left: -25px; // Los sacamos del contenedor
+  }
+  &--next {
+    right: -25px; // Los sacamos del contenedor
+  }
+}

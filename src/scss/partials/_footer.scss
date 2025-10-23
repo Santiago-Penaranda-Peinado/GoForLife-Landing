@@ -1,55 +1,101 @@
 // src/scss/partials/_footer.scss
 @use 'variables' as *;
+@use 'mixins' as *;
 
 .site-footer {
-  background: $black;
-  color: $white;
-  padding: 3rem 0 1rem;
+  background: $black; //
+  color: rgba($white, 0.7); //
+  padding: 4rem 0 0; // Más padding arriba, quitamos el de abajo
 
+  // Grid principal del footer
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    // Un grid más robusto
+    grid-template-columns: 2fr 1fr; // Columna de marca más ancha
+    gap: 3rem;
+    margin-bottom: 3rem;
+
+    @include desktop {
+      grid-template-columns: 2fr 1fr 1fr; // 3 columnas en desktop
+    }
+    
+    @include max-width($breakpoint-md - 1) {
+      grid-template-columns: 1fr; // 1 columna en móvil
+    }
   }
 
+  // Columna 1: Marca
   .footer-brand {
     .footer-logo {
-      height: 40px;
-      margin-bottom: 1rem;
+      height: 45px; // Un poco más grande
+      margin-bottom: 1.5rem;
     }
 
     p {
-      color: rgba($white, 0.7);
-      line-height: 1.6;
+      font-size: 0.95rem;
+      line-height: 1.7; //
+      max-width: 400px; // Evita que se estire
     }
   }
 
+  // Columna 2: Contacto (o links)
   .footer-contact {
     h4 {
       color: $white;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem; // Más espacio
+      font-size: 1.25rem;
+      position: relative;
+
+      // Línea de acento
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: $accent-color; //
+      }
     }
 
     p {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      color: rgba($white, 0.7);
+      gap: 0.75rem; //
+      margin-bottom: 1rem; //
+      font-size: 0.95rem;
 
       i {
-        color: $accent-color;
+        color: $accent-color; //
         width: 20px;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      // Hacemos que los datos de contacto sean links
+      a {
+        color: rgba($white, 0.7);
+        text-decoration: none;
+        transition: all $transition-speed-normal ease;
+        
+        &:hover {
+          color: $white;
+          text-decoration: underline;
+        }
       }
     }
   }
 
+  // --- Copyright (Bottom bar) ---
   .footer-bottom {
-    border-top: 1px solid rgba($white, 0.1);
-    padding-top: 1.5rem;
+    border-top: 1px solid rgba($white, 0.1); //
+    padding: 1.5rem 0; //
     text-align: center;
-    color: rgba($white, 0.5);
-    font-size: 0.9rem;
+    color: rgba($white, 0.5); //
+    font-size: 0.9rem; //
+    
+    @include desktop {
+      @include flex-between; //
+    }
   }
 }

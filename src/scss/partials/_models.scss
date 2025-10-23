@@ -2,91 +2,203 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.models {
-  &-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    max-width: 900px;
+// --- 1. Header de la Sección (Simplificado) ---
+// (Tu HTML usa .models-header, no .section-header)
+.models-header {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  .section-subtitle {
+    display: block;
+    color: $accent-color; //
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .section-title {
+    color: $black; //
+    margin-bottom: 1.5rem;
+    font-size: clamp(2rem, 5vw, 3rem); // Consistente
+  }
+
+  .section-description {
+    font-size: 1.2rem;
+    color: $gray-medium; //
+    max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
   }
 }
 
+// --- 2. Grid de Modelos ---
+.models-grid {
+  display: grid;
+  grid-template-columns: 1fr; // Mobile-first
+  gap: 2.5rem;
+  
+  // Centramos las 2 tarjetas en desktop
+  max-width: 900px; 
+  margin: 0 auto;
+
+  // 2 columnas en desktop
+  @include min-width($breakpoint-md) { //
+    grid-template-columns: repeat(2, 1fr);
+    
+    // ¡Importante para que las tarjetas tengan la misma altura!
+    align-items: stretch; 
+  }
+}
+
+// --- 3. Tarjeta de Modelo (Base) ---
 .model-card {
+  // ¡Claves para igualar altura!
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+
   background: $white;
-  border-radius: $border-radius;
-  padding: 2rem;
-  box-shadow: $box-shadow-soft;
+  border-radius: $border-radius; //
+  padding: 2.5rem;
+  box-shadow: $box-shadow-soft; //
   position: relative;
-  transition: transform $transition-speed-normal ease, box-shadow $transition-speed-normal ease;
+  
+  // Placeholder para borde en hover/featured
+  border: 2px solid transparent; 
+  
+  // Transición LIMPIA (solo lo que necesitamos)
+  transition: transform $transition-speed-normal ease, 
+              box-shadow $transition-speed-normal ease,
+              border-color $transition-speed-normal ease;
 
+  // ¡HOVER FUNCIONAL!
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: $box-shadow-medium;
+    transform: translateY(-8px); //
+    box-shadow: $box-shadow-medium; //
   }
+}
 
-  &--featured {
-    border: 2px solid $accent-color;
-    transform: scale(1.05);
-
-    @include max-width($breakpoint-md) {
-      transform: none;
-    }
-  }
-
-  &__badge {
+// --- 4. Tarjeta Destacada ---
+.model-card--featured {
+  // Hacemos que "salte" a la vista
+  border-color: $accent-color;
+  background: linear-gradient($white, lighten($accent-color, 45%));
+  
+  // El badge (más simple que el ribbon)
+  &::before {
+    content: 'Recomendado'; //
     position: absolute;
-    top: -10px;
-    right: 2rem;
-    background: $accent-color;
+    top: -15px; // Lo sacamos
+    right: 1.5rem;
+    background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
     color: $black;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px; // Redondo
+    font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba($accent-color, 0.4);
+    z-index: 2;
   }
 
-  &__header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid $gray-border;
+  // Solo escalamos en desktop (para no romper el layout móvil)
+  @include min-width($breakpoint-md) {
+    transform: scale(1.03);
+  }
 
-    h3 {
-      color: $black;
-      margin-bottom: 0.5rem;
+  &:hover {
+    // Un hover más pronunciado
+    transform: translateY(-8px) scale(1.05); //
+    box-shadow: $box-shadow-large; //
+  }
+}
+
+// --- 5. Contenido de la Tarjeta ---
+.model-card__header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $gray-border; //
+
+  h3 {
+    color: $black;
+    margin-bottom: 0.75rem;
+    font-size: 1.6rem;
+  }
+}
+
+.model-card__price {
+  font-family: $font-primary; //
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $primary-color; //
+  transition: color $transition-speed-normal ease;
+
+  // Precio destacado
+  .model-card--featured & {
+    color: $accent-color;
+  }
+}
+
+.model-card__features {
+  // ¡Clave para igualar altura!
+  // Hace que esta sección crezca
+  flex-grow: 1; 
+  margin-bottom: 2.5rem;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; // Espacio entre items
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start; // Alinea bien si el texto tiene 2+ líneas
+    gap: 0.75rem;
+    color: $gray-dark; //
+    font-size: 0.95rem;
+
+    i {
+      color: $accent-color;
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0; // Evita que el ícono se encoja
+      width: 20px;
+      text-align: center;
+      transition: transform $transition-speed-normal ease;
     }
-  }
+    
+    span { // Tu HTML ya usa <span>
+      flex-grow: 1;
+      line-height: 1.6;
+    }
 
-  &__price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $primary-color;
-  }
-
-  &__features {
-    margin-bottom: 2rem;
-
-    ul {
-      list-style: none;
-
-      li {
-        @include flex-center;
-        gap: 0.75rem;
-        margin-bottom: 0.75rem;
-        color: $gray-dark;
-
-        i {
-          color: $accent-color;
-          font-size: 0.9rem;
-        }
+    // Hover simple en cada feature
+    &:hover {
+      i {
+        transform: scale(1.2);
+      }
+      span {
+        color: $black;
       }
     }
   }
+}
 
-  &__cta {
-    text-align: center;
+.model-card__cta {
+  // ¡Clave para igualar altura!
+  // Se alinea al fondo
+  margin-top: auto; 
+  text-align: center;
+
+  .btn {
+    width: 100%; // Botón de ancho completo
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
   }
 }

@@ -2,34 +2,69 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.contact {
-  &-content {
-    max-width: 600px;
-    margin: 0 auto;
+// El fondo ya está definido por .section--accent en _layout.scss
+// Esta clase solo estiliza el contenido interno.
+
+.contact-content {
+  max-width: 700px;
+  margin: 0 auto;
+  
+  // Damos a la tarjeta del formulario un look "glass"
+  background: linear-gradient(135deg, 
+    rgba($white, 0.1) 0%, 
+    rgba($white, 0.05) 100%
+  );
+  @include glass-effect; //
+  
+  border-radius: $border-radius; //
+  padding: 2rem;
+  box-shadow: $box-shadow-medium; //
+
+  @include desktop {
+    padding: 3rem;
   }
+}
 
-  &-form {
-    .form-group {
-      margin-bottom: 1.5rem;
+.contact-form {
+  .form-group {
+    margin-bottom: 1.5rem;
 
-      input, select {
-        width: 100%;
-        padding: 1rem;
-        border: 1px solid $gray-border;
-        border-radius: $border-radius;
-        font-family: $font-secondary;
-        font-size: 1rem;
-        transition: border-color $transition-speed-normal ease;
+    input, select {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba($white, 0.2); // Borde blanco traslúcido
+      border-radius: $border-radius; //
+      font-family: $font-secondary; //
+      font-size: 1rem;
+      transition: all $transition-speed-normal ease;
+      
+      // Estilos del input "glass"
+      background: rgba($black, 0.2);
+      color: $white;
 
-        &:focus {
-          outline: none;
-          border-color: $primary-color;
-        }
+      // Placeholder
+      &::placeholder {
+        color: rgba($white, 0.6);
+      }
+      
+      // Select options
+      option {
+        background: darken($primary-color, 10%);
+        color: $white;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $accent-color; //
+        background: rgba($black, 0.1);
+        box-shadow: 0 0 15px rgba($accent-color, 0.3);
       }
     }
+  }
 
-    .btn {
-      width: 100%;
-    }
+  .btn {
+    width: 100%;
+    // Usamos el .btn--primary que es el verde acento
+    // para que contraste con el fondo azul.
   }
 }
