@@ -7,18 +7,108 @@
   grid-template-columns: 1fr; // Mobile-first
   gap: 3rem;
   align-items: center;
+  position: relative;
 
   @include desktop {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
   }
+
+  // Líneas de conexión decorativas
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba($accent-color, 0.2), transparent);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: none;
+    
+    @include max-width($breakpoint-lg - 1) {
+      display: none;
+    }
+  }
 }
 
 .tecnologia__image-content {
+  position: relative;
+  
   img {
     width: 100%;
     height: auto;
     border-radius: $border-radius;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 2;
+    
+    // Efecto de brillo al hover
+    &:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1) contrast(1.05);
+    }
+  }
+  
+  // Marco decorativo animado
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid rgba($accent-color, 0.3);
+    border-radius: calc(#{$border-radius} + 10px);
+    animation: borderGlow 3s ease-in-out infinite;
+    z-index: 1;
+  }
+  
+  // Puntos de conexión animados
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, $accent-color 0%, transparent 70%);
+    border-radius: 50%;
+    animation: connectionPulse 2s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  // Animación de scroll
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease 0.2s;
+  
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.02); 
+  }
+}
+
+@keyframes connectionPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.7; 
+  }
+  50% { 
+    transform: scale(1.3); 
+    opacity: 0.3; 
   }
 }
 
@@ -30,6 +120,16 @@
   box-shadow: $box-shadow-soft;
   border: 1px solid rgba($primary-color, 0.1);
   margin-bottom: 2.5rem; // Espacio antes de la lista
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 40px rgba($black, 0.3),
+      0 0 0 1px rgba($accent-color, 0.1),
+      0 0 30px rgba($accent-color, 0.1);
+  }
 
   .feature-item__icon {
     background: linear-gradient(135deg, $primary-color, $accent-color);
@@ -37,20 +137,128 @@
     width: 60px;
     height: 60px;
     font-size: 1.75rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    
     // Ajuste para el ícono principal
-    i { margin-top: 0; }
+    i { 
+      margin-top: 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    &:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 25px rgba($accent-color, 0.3);
+      
+      &::before {
+        left: 100%;
+      }
+    }
   }
 
   .feature-item__text {
     h3 {
       color: $primary-color;
       margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+      
+      // Subrayado animado
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, $accent-color, transparent);
+        transition: width 0.6s ease;
+      }
     }
+
+    &:hover h3::after {
+      width: 100%;
+    }
+
     p {
       font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 0;
+      
+      // Resaltar palabras clave
+      strong {
+        background: linear-gradient(120deg, transparent 0%, rgba($accent-color, 0.1) 50%, transparent 100%);
+        background-size: 200% 100%;
+        background-position: -100% 0;
+        animation: highlightText 3s ease-in-out infinite;
+        padding: 2px 4px;
+        border-radius: 3px;
+      }
     }
+  }
+
+  // Animación de scroll
+  opacity: 0;
+  transform: translateY(60px) rotateX(10deg);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    
+    // Efecto de onda al aparecer
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba($accent-color, 0.1) 0%, transparent 70%);
+      animation: featureReveal 1s ease-out;
+      border-radius: inherit;
+    }
+  }
+}
+
+@keyframes featureReveal {
+  0% { 
+    opacity: 0.6; 
+    transform: scale(0.8); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(1.2); 
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-5px); 
+  }
+}
+
+@keyframes highlightText {
+  0%, 100% { 
+    background-position: -100% 0; 
+  }
+  50% { 
+    background-position: 200% 0; 
   }
 }
 
@@ -66,17 +274,68 @@
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 
-  // --- Animación de Scroll ---
+  // Efectos hover avanzados
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 40px rgba($black, 0.3),
+      0 0 0 1px rgba($accent-color, 0.1),
+      0 0 30px rgba($accent-color, 0.1);
+    
+    .feature-item__icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 25px rgba($accent-color, 0.3);
+    }
+  }
+
+  // Brillos dinámicos basados en cursor
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba($accent-color, 0.05) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  &:hover::after {
+    opacity: 1;
+  }
+
+  // --- Animación de Scroll Mejorada ---
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(60px) rotateX(10deg);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 
   &.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) rotateX(0);
+    
+    // Efecto de onda al aparecer
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba($accent-color, 0.1) 0%, transparent 70%);
+      animation: featureReveal 1s ease-out;
+      border-radius: inherit;
+    }
   }
-  // --- Fin Animación ---
 
   &__icon {
     @include flex-center;
@@ -87,10 +346,58 @@
     background: rgba($primary-color, 0.1);
     color: $primary-color;
     font-size: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
 
     i {
       margin-top: 2px; // Pequeño ajuste
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
     }
+
+    // Fondo animado para íconos
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+      transition: left 0.5s ease;
+      z-index: 1;
+    }
+    
+    &:hover::before {
+      left: 100%;
+    }
+
+    // Efecto de pulso sutil
+    &::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      background: rgba($accent-color, 0.1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+    
+    &:hover::after {
+      opacity: 1;
+      animation: iconPulse 2s infinite;
+    }
+
+    // Íconos específicos con animaciones personalizadas
+    .fa-desktop { animation: shake 4s ease-in-out infinite; }
+    .fa-chart-pie { animation: pulse 2s ease-in-out infinite; }
+    .fa-microchip { animation: rotate 6s linear infinite; }
   }
 
   &__text {
@@ -103,6 +410,234 @@
       margin-bottom: 0;
       font-size: 0.95rem;
       line-height: 1.5;
+    }
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.6; 
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.3; 
+  }
+}
+
+@keyframes shake {
+  0%, 100% { 
+    transform: rotate(0deg); 
+  }
+  25% { 
+    transform: rotate(2deg); 
+  }
+  75% { 
+    transform: rotate(-2deg); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+@keyframes rotate {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+.tecnologia__features-content {
+  // Animación de scroll
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease 0.4s;
+  
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// ===============================================
+// ESTILOS DE SEPARADOR Y MODO OSCURO
+// ===============================================
+
+// --- 1. Estilos del Separador (Genérico) ---
+.section-separator {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px; // Más sutil
+  overflow: hidden;
+  z-index: 2; // Por encima del fondo, debajo del contenido
+
+  @include desktop {
+    height: 80px;
+  }
+
+  svg { width: 100%; height: 100%; }
+
+  &--top {
+    top: 0;
+    // Empuja el SVG hacia arriba para que solo se vea el ángulo
+    transform: translateY(calc(-100% + 1px)); 
+  }
+  
+  &--bottom {
+    bottom: 0;
+    // Empuja hacia abajo y rota 180°
+    transform: translateY(calc(100% - 1px)) rotate(180deg); 
+  }
+}
+
+// --- 2. Estilos Oscuros para la Sección Tecnología ---
+.section--dark {
+  // Aseguramos que la sección sea relativa
+  position: relative; 
+  
+  // Fondo oscuro (el mismo de Beneficios)
+  background: linear-gradient(160deg, lighten($black, 5%) 0%, $black 100%);
+  
+  // Ajuste de padding para dar espacio a los separadores
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  
+  @include max-width($breakpoint-md - 1) {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  // --- Colores de los Separadores ---
+  
+  // El "fill" del SVG de ARRIBA debe coincidir con la sección ANTERIOR (Modelos, que es $white)
+  .section-separator--top .section-separator__fill-tecnologia {
+    fill: #232323; 
+  }
+  
+  // El "fill" del SVG de ABAJO debe coincidir con ESTA sección (Tecnología, que es $black)
+  .section-separator--bottom .section-separator__fill {
+    fill: #232323; // Usamos el color base del gradiente
+  }
+
+  // --- Invertir Colores del Contenido ---
+
+  // Invertir Header
+  .section-header {
+    .section-subtitle {
+      color: $accent-color;
+    }
+    .section-title {
+      color: $white;
+    }
+    .section-description {
+      color: rgba($white, 0.7);
+    }
+  }
+
+  // Darle "pop" a la imagen
+ // .tecnologia__image-content img {
+    // Un sutil brillo con tus colores de marca
+    //box-shadow: 0 10px 40px rgba($accent-color, 0.1), 
+                //0 5px 20px rgba($primary-color, 0.1);
+ // }
+
+  // Invertir Feature Principal (estilo "glass")
+  .feature-item--main {
+    background: linear-gradient(135deg, rgba($white, 0.08), rgba($white, 0.03));
+    border: 1px solid rgba($white, 0.1);
+    backdrop-filter: blur(10px);
+    
+    .feature-item__text h3 {
+      color: $accent-color; // Destacamos el H3 principal
+    }
+    .feature-item__text p {
+      color: rgba($white, 0.8);
+    }
+    
+    // El ícono ya tiene un gradiente de color, así que está perfecto.
+  }
+
+  // Invertir Features Secundarios
+  .features-list .feature-item {
+    // Los items secundarios no tenían fondo, ahora sí (glass sutil)
+    background: linear-gradient(135deg, rgba($white, 0.03), rgba($white, 0.01));
+    border: 1px solid rgba($white, 0.05);
+    border-radius: $border-radius;
+    padding: 1rem; // Añadimos padding para el look de tarjeta
+    
+    &__icon {
+      // El ícono secundario era azul pálido, lo hacemos brillar
+      background: rgba($primary-color, 0.15);
+      color: $accent-color;
+    }
+    
+    &__text {
+      h4 { color: $white; }
+      p { color: rgba($white, 0.7); }
+    }
+  }
+}
+
+// --- RESPONSIVE MEJORADO ---
+@include max-width($breakpoint-md - 1) {
+  .feature-item {
+    padding: 1.5rem !important;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    
+    &--main {
+      text-align: center;
+      
+      .feature-item__icon {
+        margin: 0 auto 1rem;
+      }
+    }
+    
+    &__icon {
+      margin: 0 auto;
+    }
+  }
+  
+  .tecnologia__image-content {
+    margin-bottom: 2rem;
+    
+    &::before,
+    &::after {
+      display: none; // Simplificar en móvil
+    }
+  }
+  
+  .features-list {
+    gap: 1.5rem;
+  }
+}
+
+@include max-width($breakpoint-sm - 1) {
+  .section--dark {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .feature-item {
+    padding: 1rem !important;
+    
+    &__text {
+      h4 {
+        font-size: 1.1rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
     }
   }
 }

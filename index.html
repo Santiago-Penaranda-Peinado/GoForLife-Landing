@@ -66,15 +66,22 @@
 
     <main>
       <!-- Hero Section -->
-        <section id="hero" class="hero">
-    
+      <section id="hero" class="hero">
           <div class="hero__background-container">
               <video class="hero__video" playsinline autoplay muted loop poster="/hero/goforlife-hero-poster.jpg">
                   <source src="/hero/goforlife-hero-background-1900x600.mp4" type="video/mp4">
                   Tu navegador no soporta el elemento video.
               </video>
-              <div class="hero__mobile-background"></div>
               <div class="hero__overlay"></div>
+          </div>
+          
+          <!-- Slider de fondos para móvil -->
+          <div class="hero__mobile-background">
+              <div class="hero__mobile-slider">
+                  <div class="hero__slide slide-1"></div>
+                  <div class="hero__slide slide-2"></div>
+                  <div class="hero__slide slide-3"></div>
+              </div>
           </div>
           
           <div class="container hero__container">
@@ -97,7 +104,7 @@
       </section>
 
       <!-- Sección Beneficios -->
-      <section id="beneficios" class="section benefits-section">
+      <section id="beneficios" class="section benefits-section section--dark">
         <div class="container">
           <div class="benefits-header">
             <span class="section-subtitle">Ventajas Exclusivas</span>
@@ -149,6 +156,11 @@
 
       <!-- Sección Modelos -->
       <section id="modelos" class="section models-section">
+        <div class="section-separator section-separator--top">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+            <path class="section-separator__fill-models" d="M0 100 L1000 0 L1000 100 Z"></path>
+          </svg>
+        </div>
         <div class="container">
           <div class="models-header">
             <span class="section-subtitle">Elige Tu Modelo</span>
@@ -200,7 +212,13 @@
         </div>
       </section>
 
-      <section id="tecnologia" class="section section--light">
+      <!-- Sección Tecnología -->
+      <section id="tecnologia" class="section section--dark">
+        <div class="section-separator section-separator--top">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+            <path class="section-separator__fill-tecnologia" d="M0 100 L1000 0 L1000 100 Z"></path>
+          </svg>
+        </div>
         <div class="container">
           
           <div class="section-header">
@@ -274,134 +292,263 @@
         </div> 
       </section>
 
-      <!-- Sección Testimonios -->
-      <section id="testimonios" class="section section--light">
-        <div class="container">
+      <section id="testimonios" class="section testimonios-section">
+    
+      <div class="section-separator section-separator--top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+          <path class="section-separator__fill-testimonios" d="M0 100 L1000 0 L1000 100 Z"></path>
+        </svg>
+      </div>
+
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">Voces de Éxito</span>
+          <h2 class="section-title">Lo Que Nuestros Clientes Dicen</h2>
+          <p class="section-description">
+            Descubre por qué miles de emprendedores confían en nuestra tecnología para construir su futuro.
+          </p>
+        </div>
+
+        <div class="slider-wrapper">
           
-          <div class="section-header">
-            <span class="section-subtitle">Voces de Éxito</span>
-            <h2 class="section-title">Lo Que Nuestros Clientes Dicen</h2>
-            <p class="section-description">
-              No solo lo decimos nosotros. Miles de emprendedores ya están generando ganancias con Go For Life.
-            </p>
-          </div>
-
-          <div class="testimonial-slider" id="testimonial-slider-container">
+          <div class="slider-track">
             
-            <div class="testimonial-slider__track" id="testimonial-track">
-
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="testimonial-card__rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <p class="testimonial-card__quote">
-                    "Mi ventana automática opera 24/7. Las ganancias son constantes y no tengo que estar ahí. El monedero electrónico es un éxito con mis clientes."
-                  </p>
-                  <div class="testimonial-card__author">
-                    <img src="/assets/images/placeholder-cliente-1.jpg" alt="Cliente Juan C.">
-                    <div class="testimonial-card__author-info">
-                      <h4>Juan C.</h4>
-                      <span>Emprendedor en Guadalajara</span>
-                    </div>
+            <div class="slide">
+              <div class="testimonio-card">
+                <div class="testimonio-card__rating">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonio-card__quote">
+                  "Mi ventana automática opera 24/7. Las ganancias son constantes y el monedero electrónico es un éxito con mis clientes."
+                </p>
+                <div class="testimonio-card__author">
+                  <img src="/assets/images/placeholder-cliente-1.jpg" alt="Cliente Juan C.">
+                  <div class="testimonio-card__author-info">
+                    <h4>Juan C.</h4>
+                    <span>Emprendedor en Guadalajara</span>
                   </div>
                 </div>
               </div>
-
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="testimonial-card__rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <p class="testimonial-card__quote">
-                    "El equipo de reparto es robusto y el soporte técnico de Go For Life es inigualable. Me ayudaron con todo el arranque y la capacitación fue excelente."
-                  </p>
-                  <div class="testimonial-card__author">
-                    <img src="/assets/images/placeholder-cliente-2.jpg" alt="Cliente María F.">
-                    <div class="testimonial-card__author-info">
-                      <h4>María F.</h4>
-                      <span>Negocio Familiar, Monterrey</span>
-                    </div>
+            </div>
+            
+            <div class="slide">
+              <div class="testimonio-card">
+                <div class="testimonio-card__rating">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonio-card__quote">
+                  "El soporte técnico es inigualable. Me ayudaron con todo el arranque y la capacitación fue excelente. 100% recomendado."
+                </p>
+                <div class="testimonio-card__author">
+                  <img src="/assets/images/placeholder-cliente-2.jpg" alt="Cliente María F.">
+                  <div class="testimonio-card__author-info">
+                    <h4>María F.</h4>
+                    <span>Negocio Familiar, Monterrey</span>
                   </div>
                 </div>
               </div>
-
-              <div class="testimonial-slide">
-                <div class="testimonial-card">
-                  <div class="testimonial-card__rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </div>
-                  <p class="testimonial-card__quote">
-                    "La calidad del agua es excelente y la garantía de 2 años me dio la confianza que necesitaba. Es un negocio 100% rentable como lo prometen."
-                  </p>
-                  <div class="testimonial-card__author">
-                    <img src="/assets/images/placeholder-cliente-3.jpg" alt="Cliente Carlos S.">
-                    <div class="testimonial-card__author-info">
-                      <h4>Carlos S.</h4>
-                      <span>Inversionista, CDMX</span>
-                    </div>
+            </div>
+            
+            <div class="slide">
+              <div class="testimonio-card">
+                <div class="testimonio-card__rating">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="testimonio-card__quote">
+                  "La calidad del agua es excelente y la garantía de 2 años me dio la confianza. Es un negocio 100% rentable como lo prometen."
+                </p>
+                <div class="testimonio-card__author">
+                  <img src="/assets/images/placeholder-cliente-3.jpg" alt="Cliente Carlos S.">
+                  <div class="testimonio-card__author-info">
+                    <h4>Carlos S.</h4>
+                    <span>Inversionista, CDMX</span>
                   </div>
                 </div>
               </div>
-
-            </div> <div class="testimonial-slider__nav">
-              <button class="nav-arrow nav-arrow--prev" id="testimonial-prev" aria-label="Testimonio anterior">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button class="nav-arrow nav-arrow--next" id="testimonial-next" aria-label="Siguiente testimonio">
-                <i class="fas fa-chevron-right"></i>
-              </button>
+            </div>
+            
+            <div class="slide">
+              <div class="testimonio-card">
+                <div class="testimonio-card__rating">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonio-card__quote">
+                  "Recuperé mi inversión en 4 meses. La tecnología de cashback es un diferenciador clave que mis clientes aman."
+                </p>
+                <div class="testimonio-card__author">
+                  <img src="/assets/images/placeholder-cliente-1.jpg" alt="Cliente Roberto M.">
+                  <div class="testimonio-card__author-info">
+                    <h4>Roberto M.</h4>
+                    <span>Emprendedor, Puebla</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-          </div> 
-        </div> 
-      </section>
+          </div> </div> <div class="slider-controls">
+          <button class="slider-btn slider-btn--prev" aria-label="Testimonio anterior">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="slider-pagination">
+            </div>
+          <button class="slider-btn slider-btn--next" aria-label="Siguiente testimonio">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
 
-      <!-- Sección Contacto -->
-      <section id="contacto" class="section section--accent">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">¿Listo para Emprender?</h2>
-            <p class="section-description">
-              Contáctanos y recibe asesoría personalizada sin costo
+      </div> 
+    </section>
+
+    <!-- Sección Contacto -->
+    <section class="contact-section" id="contacto">
+      <div class="contact-container">
+        
+        <!-- Header Mejorado -->
+        <div class="contact-header">
+          <div class="contact-header__badge">
+            <i class="fas fa-rocket me-2"></i>
+            Oportunidad Limitada
+          </div>
+          <h2 class="contact-header__title">
+            ¿Listo para <span>Transformar tu Vida?</span>
+          </h2>
+          <p class="contact-header__description">
+            Da el primer paso hacia tu independencia financiera. Obtén asesoría personalizada 
+            sin costo y descubre cómo miles ya lograron su libertad económica.
+          </p>
+        </div>
+        
+        <!-- Grid Mejorado -->
+        <div class="contact-grid">
+          
+          <!-- Información de Contacto -->
+          <div class="contact-info">
+            <h3 class="contact-info__title">Tu Futuro Negocio te Espera</h3>
+            <p class="contact-info__description">
+              Nuestros expertos te guiarán paso a paso. Desde financiamiento hasta instalación, 
+              estamos contigo en todo el proceso. Sin compromisos, solo oportunidades.
             </p>
+            
+            <ul class="contact-details">
+              <li class="contact-details__item">
+                <div class="contact-details__icon">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-details__content">
+                  <span class="contact-details__content-label">Línea Directa (Gratis)</span>
+                  <a href="tel:01800463675433" class="contact-details__content-value">
+                    01-800-GOFORLIFE
+                  </a>
+                  <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;">
+                    Lunes a Viernes • 9:00 - 18:00
+                  </small>
+                </div>
+              </li>
+              
+              <li class="contact-details__item">
+                <div class="contact-details__icon">
+                  <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <div class="contact-details__content">
+                  <span class="contact-details__content-label">Email Prioritario</span>
+                  <a href="mailto:info@goforlife.mx" class="contact-details__content-value">
+                    info@goforlife.mx
+                  </a>
+                  <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;">
+                    Respuesta en menos de 2 horas
+                  </small>
+                </div>
+              </li>
+              
+              <li class="contact-details__item">
+                <div class="contact-details__icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-details__content">
+                  <span class="contact-details__content-label">Oficinas Centrales</span>
+                  <p class="contact-details__content-text">
+                    Guadalajara, Jalisco<br>
+                    <small style="color: rgba(255,255,255,0.6);">Agenda tu visita con anticipación</small>
+                  </p>
+                </div>
+              </li>
+              
+              <li class="contact-details__item">
+                <div class="contact-details__icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details__content">
+                  <span class="contact-details__content-label">Asesoría Inmediata</span>
+                  <p class="contact-details__content-text">
+                    WhatsApp Business<br>
+                    <small style="color: rgba(255,255,255,0.6);">Respuesta instantánea</small>
+                  </p>
+                </div>
+              </li>
+            </ul>
           </div>
           
-          <div class="contact-content">
+          <!-- Formulario Premium -->
+          <div class="contact-form-wrapper">
             <form class="contact-form">
+              <h3 class="contact-form__title">
+                <i class="fas fa-bolt me-2" style="color: #4ADE80;"></i>
+                Solicita tu Cotización
+              </h3>
+              
               <div class="form-group">
-                <input type="text" placeholder="Nombre completo" required>
+                <label class="form-group__label">Nombre Completo *</label>
+                <input type="text" class="form-group__input" placeholder="Ej: Juan Carlos Rodríguez" required>
               </div>
+              
               <div class="form-group">
-                <input type="tel" placeholder="Teléfono" required>
+                <label class="form-group__label">Teléfono *</label>
+                <input type="tel" class="form-group__input" placeholder="10 dígitos (Ej: 3312345678)" 
+                      pattern="[0-9]{10}" required>
               </div>
+              
               <div class="form-group">
-                <input type="email" placeholder="Email" required>
+                <label class="form-group__label">Email *</label>
+                <input type="email" class="form-group__input" placeholder="tu.email@ejemplo.com" required>
               </div>
+              
               <div class="form-group">
-                <select required>
-                  <option value="">Modelo de interés</option>
-                  <option value="tradicional">Modelo Tradicional</option>
-                  <option value="automatico">Ventanas Automáticas</option>
+                <label class="form-group__label">Modelo de Interés *</label>
+                <select class="form-group__select" required>
+                  <option value="">Selecciona tu modelo preferido</option>
+                  <option value="tradicional">🏪 Modelo Tradicional</option>
+                  <option value="automatico">🤖 Ventanas Automáticas 24/7</option>
+                  <option value="ambos">💼 Ambos / No estoy seguro</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn--primary btn--large">Solicitar Cotización</button>
+              
+              <div class="form-group">
+                <label class="form-group__label">Inversión Aproximada</label>
+                <select class="form-group__select">
+                  <option value="">Selecciona tu rango de inversión</option>
+                  <option value="50-100">$50,000 - $100,000 MXN</option>
+                  <option value="100-200">$100,000 - $200,000 MXN</option>
+                  <option value="200-plus">+$200,000 MXN</option>
+                  <option value="no-se">Aún no lo sé</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="contact-submit">
+                <span>Iniciar mi Proyecto</span>
+                <i class="fas fa-paper-plane contact-submit__icon"></i>
+              </button>
+              
+              <p style="color: rgba(255,255,255,0.7); text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+                <i class="fas fa-shield-alt me-1"></i>
+                Tus datos están 100% protegidos. No compartimos información con terceros.
+              </p>
             </form>
           </div>
+          
         </div>
-      </section>
+      </div>
+    </section>
     </main>
 
     <!-- Footer -->

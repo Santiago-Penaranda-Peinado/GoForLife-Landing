@@ -49,43 +49,89 @@
   }
 }
 
-// OVERLAY ELIMINADO para no interferir con el video
-.hero__overlay {
-  display: none;
-}
-
-// --- CONTENIDO SOLO PARA MÓVIL ---
+// --- HERO PARA MÓVIL CON SLIDER DE FONDOS ---
 .hero__mobile-background {
   display: block;
-  
-  // Fondo mejorado para móvil con gradiente animado
-  background: linear-gradient(-45deg, $primary-color, darken($primary-color, 15%), lighten($primary-color, 5%), darken($primary-color, 10%));
-  background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
 
   @include desktop {
     display: none;
   }
+
+  // Contenedor del slider de imágenes
+  .hero__mobile-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    .hero__slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      
+      // Imágenes de fondo para el slider
+      &.slide-1 {
+        background-image: url('/images/goforlife-producto-movil.jpeg');
+        animation: slideShow 12s infinite;
+      }
+      
+      &.slide-2 {
+        background-image: url('/images/mobile-slide-2.jpg');
+        animation: slideShow 12s infinite 4s;
+      }
+      
+      &.slide-3 {
+        background-image: url('/images/mobile-slide-3.jpg');
+        animation: slideShow 12s infinite 8s;
+      }
+    }
+  }
+
+  // Overlay para mejorar legibilidad del texto
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba($black, 0.6) 0%,
+      rgba($black, 0.5) 50%,
+      rgba($black, 0.7) 100%
+    );
+    z-index: 2;
+  }
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes slideShow {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  50% { opacity: 1; }
+  75% { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 // --- CONTENEDOR Y CONTENIDO SOLO MÓVIL ---
 .hero__container {
   position: relative;
-  z-index: 2;
+  z-index: 3; // Por encima del fondo y overlay
   
-  // EN DESKTOP: OCULTAMOS completamente el contenido
   @include desktop {
     display: none;
   }
@@ -93,21 +139,30 @@
 
 .hero__content {
   text-align: center;
-  padding: ($header-height-initial + 3rem) 0 3rem 0;
+  padding: ($header-height-initial + 2rem) 0 3rem 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   
   @include desktop {
-    display: none; // Aseguramos que no se muestre en desktop
+    display: none;
   }
 
+  // --- Animaciones de entrada para el contenido móvil ---
   .hero__title {
     color: $white;
     margin-bottom: 1.5rem;
     @include text-shadow;
-    
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
+
+    // Animación
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroContentFadeIn 1s ease 0.2s forwards;
   }
 
   .hero__description {
@@ -118,6 +173,11 @@
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
+    
+    // Animación
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroContentFadeIn 1s ease 0.4s forwards;
   }
 
   .hero__cta-group {
@@ -125,6 +185,11 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+
+    // Animación
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroContentFadeIn 1s ease 0.6s forwards;
     
     .btn {
       transform: translateY(0);
@@ -172,6 +237,19 @@
         border-color: $white;
       }
     }
+  }
+  
+  // --- ELIMINAMOS la imagen móvil individual ---
+  .hero__image-mobile {
+    display: none;
+  }
+}
+
+// Keyframe genérico para el contenido móvil
+@keyframes heroContentFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

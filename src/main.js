@@ -3,6 +3,8 @@ import './scss/main.scss';
 import { initHeader } from './js/modules/header.js';
 import { initScrollAnimations } from './js/modules/animations.js';
 import { initTestimonials } from './js/modules/testimonios.js';
+import { initTecnologiaEnhanced } from './js/modules/tecnologia-enhanced.js';
+import { initContactAnimations } from './js/modules/contact-animations.js';
 
 // Mantenemos el preloader existente
 const initPreloader = () => {
@@ -104,3 +106,5 @@ document.addEventListener('DOMContentLoaded', initPreloader);
 document.addEventListener('DOMContentLoaded', initHeader);
 document.addEventListener('DOMContentLoaded', initScrollAnimations);
 document.addEventListener('DOMContentLoaded', initTestimonials);
+document.addEventListener('DOMContentLoaded', initTecnologiaEnhanced);
+document.addEventListener('DOMContentLoaded', initContactAnimations);

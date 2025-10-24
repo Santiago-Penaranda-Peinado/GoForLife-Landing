@@ -48,7 +48,13 @@
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  
+    opacity: 0;
+    transform: translateY(40px);
+    
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   
   // Efecto de partículas sutiles
@@ -208,7 +214,7 @@
   .section-title {
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, $black, lighten($black, 20%));
+    background: linear-gradient(135deg, #ffffff, #c3c3c3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -220,5 +226,80 @@
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+  }
+}
+
+// ===============================================
+// ¡NUEVO! ESTILOS PARA LA VERSIÓN OSCURA
+// ===============================================
+
+.benefits-section.section--dark {
+  
+  // 1. Definimos el fondo oscuro
+  // Usamos tu variable $black como base
+  background: linear-gradient(160deg, lighten($black, 5%) 0%, $black 100%);
+
+  // 2. Quitamos el gradiente sutil de fondo claro
+  &::before {
+    background: none;
+  }
+  
+  // 3. Invertimos los colores del Header de la sección
+  .benefits-header {
+    .section-subtitle {
+      // Hacemos que el subtítulo brille con tu $accent-color
+      background: linear-gradient(135deg, $accent-color, lighten($accent-color, 15%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .section-title {
+      color: $white;
+      //background: none; // Quitamos el gradiente de texto negro
+    }
+    
+    .section-description {
+      color: rgba($white, 0.7);
+    }
+  }
+
+  // 4. Invertimos las Tarjetas (¡Estilo Glassmorphism!)
+  .benefit-card {
+    // Fondo de "vidrio" sobre el gradiente oscuro
+    background: linear-gradient(135deg, rgba($white, 0.05), rgba($white, 0.02));
+    border: 1px solid rgba($white, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); // Sombra más oscura
+
+    &:hover {
+      background: linear-gradient(135deg, rgba($white, 0.1), rgba($white, 0.05));
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    // Invertimos textos
+    &__number {
+      color: rgba($primary-color, 0.6); // Un poco más visible
+    }
+    
+    h3 {
+      color: $white;
+    }
+    
+    p {
+      color: rgba($white, 0.7);
+    }
+  }
+
+  // 5. Arreglo para tarjetas impares
+  .benefit-card:nth-child(odd) {
+    // El fondo debe ser igual (vidrio)
+    background: linear-gradient(135deg, rgba($white, 0.05), rgba($white, 0.02));
+
+    // Mantenemos el color del ícono
+    .benefit-card__icon {
+      background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
+    }
   }
 }

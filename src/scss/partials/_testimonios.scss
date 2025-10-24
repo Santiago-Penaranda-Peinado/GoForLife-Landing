@@ -2,140 +2,228 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.testimonial-slider {
+.testimonios-section {
   position: relative;
-  // Usamos max-width para centrar el slider
-  max-width: 800px; 
-  margin: 0 auto;
-  overflow: hidden;
-}
+  // Usamos el fondo claro de tus variables
+  background: $gray-light; 
+  // Damos espacio para el separador
+  padding: 10rem 0 6rem 0; 
 
-.testimonial-slider__track {
-  display: flex;
-  // Transición suave para el movimiento del slider
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.testimonial-slide {
-  flex: 0 0 100%; // Cada slide ocupa el 100%
-  width: 100%;
-  padding: 1rem; // Espacio para que no se peguen las sombras
-  
-  // Ocultamos slides que no están activas para accesibilidad
-  &:not(.is-active) {
-    visibility: hidden;
+  @include max-width($breakpoint-md - 1) {
+    padding-top: 7rem;
   }
-}
 
-.testimonial-card {
-  // Estilo "premium" glassmorphism
-  background: linear-gradient(135deg, $white 0%, lighten($primary-color, 48%) 100%);
-  border-radius: $border-radius; //
-  padding: 2.5rem 3rem;
-  border: 1px solid rgba($primary-color, 0.1);
-  box-shadow: $box-shadow-medium; //
-  position: relative;
-  text-align: center;
-  
-  // Icono de comillas
-  &::before {
-    content: '\f10d'; // Icono de comillas (FontAwesome)
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    font-size: 3rem;
-    color: rgba($primary-color, 0.1);
+  // --- Estilos del Separador ---
+  .section-separator--top {
     position: absolute;
-    top: 1.5rem;
-    left: 2rem;
-  }
-
-  &__rating {
-    margin-bottom: 1.5rem;
-    i {
-      color: #FFC107; // Un amarillo estrella
-      font-size: 1.1rem;
-      margin: 0 0.1rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    transform: translateY(calc(-100% + 1px));
+    overflow: hidden;
+    
+    svg { width: 100%; height: 100%; }
+    
+    // El fill coincide con la sección oscura anterior (#tecnologia)
+    .section-separator__fill-testimonios {
+      fill: #f8f9fa; 
     }
   }
 
+  // --- Estilos del Header ---
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    .section-subtitle {
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+}
+
+// --- Wrapper (CRÍTICO) ---
+.slider-wrapper {
+  // ¡Esta es la clave! Oculta los slides que se desbordan.
+  overflow: hidden;
+  position: relative;
+  
+  // Sombra interior para dar profundidad
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+    
+    @include max-width($breakpoint-md - 1) {
+      width: 50px;
+    }
+  }
+  
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, $gray-light, transparent);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, $gray-light, transparent);
+  }
+}
+
+// --- Track (El que se mueve) ---
+.slider-track {
+  display: flex;
+  // El JS aplica 'transform' y 'transition'
+  will-change: transform; // Optimización de rendimiento
+}
+
+// --- Slide (Cada item) ---
+.slide {
+  // Definimos el ancho de cada slide
+  flex: 0 0 100%; // Ancho en móvil
+  padding: 2rem 1rem; // Espacio para ver los slides de al lado
+  
+  @include min-width($breakpoint-sm) {
+    flex-basis: 50%; // 2 slides en pantalla
+  }
+  
+  @include min-width($breakpoint-lg) {
+    flex-basis: 33.333%; // 3 slides en pantalla
+  }
+  
+  .testimonio-card {
+    // --- Estado por Defecto (Inactivo) ---
+    transform: scale(0.9);
+    opacity: 0.5;
+    filter: blur(2px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  // --- Estado Activo ---
+  // El JS añade esta clase al slide del centro
+  &.is-active {
+    .testimonio-card {
+      transform: scale(1);
+      opacity: 1;
+      filter: blur(0);
+      background: $white;
+      box-shadow: $box-shadow-large;
+    }
+  }
+}
+
+// --- Tarjeta de Testimonio ---
+.testimonio-card {
+  background: $white;
+  border-radius: $border-radius;
+  padding: 2.5rem 2rem;
+  border-top: 4px solid $primary-color;
+  box-shadow: $box-shadow-soft;
+  width: 100%;
+  
+  &__rating {
+    color: #FFC107; // Amarillo estrella
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+  
   &__quote {
-    font-size: 1.25rem;
-    font-family: $font-primary;
-    font-style: italic;
+    font-size: 1.1rem;
     color: $gray-dark;
+    font-style: italic;
     line-height: 1.6;
     margin-bottom: 2rem;
-    position: relative;
-    z-index: 2;
+    // Forzar altura mínima para alinear tarjetas
+    min-height: 120px; 
   }
-
+  
   &__author {
-    @include flex-center; //
+    display: flex;
+    align-items: center;
     gap: 1rem;
-
+    padding-top: 1.5rem;
+    border-top: 1px solid $gray-border;
+    
     img {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      border: 3px solid $white;
-      box-shadow: 0 4px 10px rgba($black, 0.1);
+      object-fit: cover;
     }
-  }
-  
-  &__author-info {
-    text-align: left;
+    
     h4 {
-      color: $black;
-      margin-bottom: 0.1rem;
       font-size: 1.1rem;
+      color: $black;
+      margin: 0;
     }
+    
     span {
-      color: $gray-medium;
       font-size: 0.9rem;
+      color: $gray-medium;
     }
   }
 }
 
-// Navegación (Botones)
-.testimonial-slider__nav {
-  // Ocultos en móvil (se puede usar swipe, aunque este JS no lo incluye)
-  display: none; 
-
-  @include desktop {
-    display: block;
-  }
+// --- Controles (Botones y Dots) ---
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-.nav-arrow {
-  @include button-reset; //
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  
-  // Estilo "glass"
-  background: rgba($white, 0.2);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba($white, 0.3);
-  
-  color: $primary-color;
+.slider-btn {
+  @include button-reset;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  font-size: 1.2rem;
+  background: $white;
+  color: $primary-color;
+  font-size: 1.1rem;
+  box-shadow: $box-shadow-medium;
   transition: all $transition-speed-normal ease;
   z-index: 10;
   
   &:hover {
     background: $primary-color;
     color: $white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: $box-shadow-medium;
+    transform: scale(1.1);
   }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(1);
+    background: $gray-light;
+  }
+}
 
-  &--prev {
-    left: -25px; // Los sacamos del contenedor
-  }
-  &--next {
-    right: -25px; // Los sacamos del contenedor
+.slider-pagination {
+  display: flex;
+  gap: 0.75rem;
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba($primary-color, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all $transition-speed-normal ease;
+    
+    &.is-active {
+      background: $primary-color;
+      transform: scale(1.2);
+    }
+    
+    &:hover {
+      background: rgba($primary-color, 0.5);
+    }
   }
 }

@@ -2,7 +2,7 @@
 
 export const initScrollAnimations = () => {
   // Seleccionamos las tarjetas de ambas secciones
-  const animatedElements = document.querySelectorAll('.benefit-card, .model-card, .feature-item');
+  const animatedElements = document.querySelectorAll('.benefit-card, .model-card, .feature-item, .contact-info, .contact-form-wrapper');
   
   if (animatedElements.length === 0) return;
 
