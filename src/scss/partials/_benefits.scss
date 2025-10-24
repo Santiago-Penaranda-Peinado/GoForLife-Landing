@@ -5,8 +5,9 @@
 .benefits-section {
   position: relative;
   overflow: hidden;
+  padding: 6rem 0;
   
-  // Fondo con gradiente sutil
+  // Fondo con textura sutil de ruido
   &::before {
     content: '';
     position: absolute;
@@ -14,8 +15,99 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba($primary-color, 0.02) 0%, rgba($accent-color, 0.01) 100%);
+    background: 
+      // Textura de ruido sutil
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
+      // Gradiente principal
+      linear-gradient(135deg, rgba($primary-color, 0.03) 0%, rgba($accent-color, 0.02) 100%);
     z-index: -1;
+  }
+  
+  // Patrón geométrico sutil de fondo
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      // Líneas diagonales muy sutiles
+      linear-gradient(45deg, transparent 95%, rgba($primary-color, 0.02) 95%),
+      linear-gradient(-45deg, transparent 95%, rgba($accent-color, 0.02) 95%);
+    background-size: 60px 60px, 60px 60px;
+    background-position: 0 0, 30px 30px;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// Contenedor adicional para efectos de profundidad
+.benefits-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  
+  // Elementos flotantes decorativos
+  &__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.1;
+    animation: floatOrbs 20s ease-in-out infinite;
+    
+    &--1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, $primary-color 0%, transparent 70%);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    &--2 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, $accent-color 0%, transparent 70%);
+      top: 60%;
+      right: 15%;
+      animation-delay: -7s;
+    }
+    
+    &--3 {
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, lighten($primary-color, 10%) 0%, transparent 70%);
+      bottom: 20%;
+      left: 20%;
+      animation-delay: -14s;
+    }
+  }
+  
+  // Líneas de conexión sutiles
+  &__line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba($primary-color, 0.03), transparent);
+    height: 1px;
+    
+    &--1 {
+      top: 30%;
+      left: 0;
+      right: 0;
+      animation: slideLine 15s linear infinite;
+    }
+    
+    &--2 {
+      top: 70%;
+      left: 0;
+      right: 0;
+      animation: slideLine 20s linear infinite reverse;
+    }
   }
 }
 
@@ -32,32 +124,41 @@
   
   @include desktop {
     grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
   }
 }
 
 .benefit-card {
-  background: linear-gradient(135deg, $white 0%, lighten($primary-color, 45%) 100%);
+  background: 
+    // Textura de ruido en la tarjeta
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E"),
+    // Gradiente principal
+    linear-gradient(135deg, $white 0%, lighten($primary-color, 48%) 100%);
   padding: 3rem 2rem;
-  border-radius: 20px;
+  border-radius: 24px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   
-  // Borde sutil con efecto glassmorphism
-  border: 1px solid rgba($primary-color, 0.1);
+  // Borde con efecto de vibración sutil
+  border: 1.5px solid rgba($primary-color, 0.08);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    opacity: 0;
-    transform: translateY(40px);
-    
-    &.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    0 12px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 0 1px rgba($white, 0.8);
   
-  // Efecto de partículas sutiles
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  // Efecto de partículas internas
   &::before {
     content: '';
     position: absolute;
@@ -66,13 +167,13 @@
     width: 100%;
     height: 100%;
     background-image: 
-      radial-gradient(circle at 20% 80%, rgba($accent-color, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba($primary-color, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, rgba($accent-color, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 80% 20%, rgba($primary-color, 0.08) 0%, transparent 60%);
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
   }
   
-  // Línea de acento animada
+  // Efecto de borde luminoso
   &::after {
     content: '';
     position: absolute;
@@ -80,17 +181,34 @@
     left: 50%;
     transform: translateX(-50%);
     width: 0;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(90deg, $primary-color, $accent-color);
-    border-radius: 2px;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px 8px 0 0;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 -2px 12px rgba($accent-color, 0.4);
+  }
+
+  // Efecto de brillo en las esquinas
+  .corner-shine {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba($white, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    
+    &--tl { top: -10px; left: -10px; }
+    &--tr { top: -10px; right: -10px; }
+    &--bl { bottom: -10px; left: -10px; }
+    &--br { bottom: -10px; right: -10px; }
   }
 
   &:hover {
     transform: translateY(-12px) scale(1.02);
     box-shadow: 
-      0 20px 60px rgba(0, 0, 0, 0.15),
-      0 8px 32px rgba($primary-color, 0.1),
+      0 25px 60px rgba(0, 0, 0, 0.15),
+      0 15px 40px rgba($primary-color, 0.12),
+      0 0 0 1px rgba($white, 0.9),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
     
     &::before {
@@ -101,21 +219,35 @@
       width: 80%;
     }
     
+    .corner-shine {
+      opacity: 1;
+    }
+    
     .benefit-card__icon {
       transform: scale(1.15) translateY(-5px);
       box-shadow: 
-        0 15px 30px rgba($primary-color, 0.3),
-        0 0 0 8px rgba($primary-color, 0.1);
+        0 20px 40px rgba($primary-color, 0.4),
+        0 0 0 10px rgba($primary-color, 0.08),
+        0 0 30px rgba($primary-color, 0.3);
       
       i {
         transform: scale(1.1);
-        filter: brightness(1.2);
+        filter: brightness(1.2) drop-shadow(0 4px 12px rgba($black, 0.3));
       }
     }
     
     .benefit-card__number {
-      transform: scale(1.1);
+      transform: scale(1.1) translateY(-2px);
       color: $accent-color;
+      text-shadow: 0 4px 15px rgba($accent-color, 0.3);
+    }
+    
+    h3 {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, $primary-color, $accent-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   }
 
@@ -127,29 +259,38 @@
     font-weight: 800;
     color: rgba($primary-color, 0.1);
     line-height: 1;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1;
+    text-shadow: 0 2px 8px rgba($black, 0.1);
   }
 
   &__icon {
     width: 100px;
     height: 100px;
-    background: linear-gradient(135deg, $primary-color, $accent-color);
+    background: 
+      // Textura sutil en el icono
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E"),
+      // Gradiente del icono
+      linear-gradient(135deg, $primary-color, $accent-color);
     border-radius: 50%;
     @include flex-center;
     margin: 0 auto 2rem;
     position: relative;
     z-index: 2;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 
-      0 10px 25px rgba($primary-color, 0.3),
-      0 0 0 5px rgba($primary-color, 0.05);
+      0 15px 35px rgba($primary-color, 0.25),
+      0 0 0 6px rgba($primary-color, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba($white, 0.3);
 
     i {
       font-size: 2.5rem;
       color: $white;
-      text-shadow: 0 2px 10px rgba($black, 0.2);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      text-shadow: 0 2px 12px rgba($black, 0.3);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: drop-shadow(0 2px 8px rgba($black, 0.2));
     }
   }
 
@@ -160,6 +301,7 @@
     font-weight: 700;
     position: relative;
     z-index: 2;
+    transition: all 0.4s ease;
   }
 
   p {
@@ -169,19 +311,38 @@
     position: relative;
     z-index: 2;
     margin-bottom: 0;
+    transition: color 0.3s ease;
   }
 }
 
-// Diseño alternativo para tarjetas impares
+// Diseño alternativo para tarjetas impares - Mejorado
 .benefit-card:nth-child(odd) {
-  background: linear-gradient(135deg, $white 0%, lighten($accent-color, 40%) 100%);
+  background: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, $white 0%, lighten($accent-color, 42%) 100%);
   
   .benefit-card__icon {
-    background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E"),
+      linear-gradient(135deg, $accent-color, lighten($accent-color, 12%));
+    box-shadow: 
+      0 15px 35px rgba($accent-color, 0.25),
+      0 0 0 6px rgba($accent-color, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  &:hover {
+    .benefit-card__icon {
+      box-shadow: 
+        0 20px 40px rgba($accent-color, 0.4),
+        0 0 0 10px rgba($accent-color, 0.08),
+        0 0 30px rgba($accent-color, 0.3);
+    }
   }
 }
 
-// Animaciones de entrada mejoradas
+// Animaciones mejoradas
 @keyframes benefitSlideUp {
   0% {
     opacity: 0;
@@ -193,10 +354,57 @@
   }
 }
 
-// Estilos para el header de la sección
+@keyframes floatOrbs {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(20px, -15px) scale(1.05);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-10px, 20px) scale(0.95);
+    opacity: 0.08;
+  }
+  75% {
+    transform: translate(-20px, -10px) scale(1.02);
+    opacity: 0.12;
+  }
+}
+
+@keyframes slideLine {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Estilos para el header de la sección - Mejorado
 .benefits-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideInUp 0.8s ease-out 0.1s forwards;
   
   .section-subtitle {
     display: inline-block;
@@ -205,19 +413,24 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    position: relative;
+    padding: 0.5rem 2rem;
   }
   
   .section-title {
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #ffffff, #c3c3c3);
+    background: linear-gradient(135deg, $black, lighten($black, 20%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 4px 20px rgba($black, 0.1);
   }
   
   .section-description {
@@ -226,61 +439,101 @@
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+    text-shadow: 0 1px 3px rgba($black, 0.1);
   }
 }
 
 // ===============================================
-// ¡NUEVO! ESTILOS PARA LA VERSIÓN OSCURA
+// VERSIÓN OSCURA - MEJORADA
 // ===============================================
 
 .benefits-section.section--dark {
+  background: 
+    // Textura de ruido para oscuro
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"),
+    linear-gradient(160deg, lighten($black, 5%) 0%, $black 100%);
   
-  // 1. Definimos el fondo oscuro
-  // Usamos tu variable $black como base
-  background: linear-gradient(160deg, lighten($black, 5%) 0%, $black 100%);
-
-  // 2. Quitamos el gradiente sutil de fondo claro
   &::before {
     background: none;
   }
   
-  // 3. Invertimos los colores del Header de la sección
+  &::after {
+    background-image: 
+      linear-gradient(45deg, transparent 95%, rgba($primary-color, 0.05) 95%),
+      linear-gradient(-45deg, transparent 95%, rgba($accent-color, 0.05) 95%);
+  }
+
+  .benefits-background {
+    &__orb {
+      &--1 {
+        background: radial-gradient(circle, rgba($primary-color, 0.8) 0%, transparent 70%);
+        opacity: 0.08;
+      }
+      
+      &--2 {
+        background: radial-gradient(circle, rgba($accent-color, 0.8) 0%, transparent 70%);
+        opacity: 0.06;
+      }
+      
+      &--3 {
+        background: radial-gradient(circle, rgba($primary-color, 0.6) 0%, transparent 70%);
+        opacity: 0.05;
+      }
+    }
+    
+    &__line {
+      background: linear-gradient(90deg, transparent, rgba($white, 0.05), transparent);
+    }
+  }
+  
   .benefits-header {
     .section-subtitle {
-      // Hacemos que el subtítulo brille con tu $accent-color
       background: linear-gradient(135deg, $accent-color, lighten($accent-color, 15%));
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
+      
+      &::before {
+        background: linear-gradient(90deg, transparent, $accent-color, transparent);
+      }
     }
     
     .section-title {
-      color: $white;
-      //background: none; // Quitamos el gradiente de texto negro
+      background: linear-gradient(135deg, $white, rgba($white, 0.8));
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 4px 20px rgba($black, 0.3);
     }
     
     .section-description {
-      color: rgba($white, 0.7);
+      color: rgba($white, 0.8);
+      text-shadow: 0 1px 3px rgba($black, 0.3);
     }
   }
 
-  // 4. Invertimos las Tarjetas (¡Estilo Glassmorphism!)
   .benefit-card {
-    // Fondo de "vidrio" sobre el gradiente oscuro
-    background: linear-gradient(135deg, rgba($white, 0.05), rgba($white, 0.02));
-    border: 1px solid rgba($white, 0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); // Sombra más oscura
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
+      linear-gradient(135deg, rgba($white, 0.08), rgba($white, 0.03));
+    border: 1.5px solid rgba($white, 0.12);
+    backdrop-filter: blur(15px);
+    box-shadow: 
+      0 15px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba($white, 0.05);
 
     &:hover {
-      background: linear-gradient(135deg, rgba($white, 0.1), rgba($white, 0.05));
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      background: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba($white, 0.12), rgba($white, 0.06));
+      box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 15px 40px rgba($primary-color, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 0 0 1px rgba($white, 0.08);
     }
 
-    // Invertimos textos
     &__number {
-      color: rgba($primary-color, 0.6); // Un poco más visible
+      color: rgba($primary-color, 0.4);
     }
     
     h3 {
@@ -288,18 +541,111 @@
     }
     
     p {
-      color: rgba($white, 0.7);
+      color: rgba($white, 0.8);
+    }
+    
+    .corner-shine {
+      background: radial-gradient(circle, rgba($white, 0.2) 0%, transparent 70%);
     }
   }
 
-  // 5. Arreglo para tarjetas impares
   .benefit-card:nth-child(odd) {
-    // El fondo debe ser igual (vidrio)
-    background: linear-gradient(135deg, rgba($white, 0.05), rgba($white, 0.02));
+    background: 
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
+      linear-gradient(135deg, rgba($white, 0.08), rgba($white, 0.03));
+    
+    &:hover {
+      background: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"),
+        linear-gradient(135deg, rgba($white, 0.12), rgba($white, 0.06));
+    }
+  }
+}
 
-    // Mantenemos el color del ícono
-    .benefit-card__icon {
-      background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
+// Responsive mejorado
+@include max-width($breakpoint-md - 1) {
+  .benefits-section {
+    padding: 4rem 0;
+  }
+  
+  .benefits-header {
+    margin-bottom: 3rem;
+    
+    .section-subtitle {
+      font-size: 1rem;
+      padding: 0.4rem 1.5rem;
+    }
+  }
+  
+  .benefit-card {
+    padding: 2.5rem 1.5rem;
+    
+    &__icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      
+      i {
+        font-size: 2rem;
+      }
+    }
+    
+    &__number {
+      font-size: 2.5rem;
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+}
+
+@include max-width($breakpoint-sm - 1) {
+  .benefits-section {
+    padding: 3rem 0;
+  }
+  
+  .benefits-grid {
+    gap: 1.5rem;
+  }
+  
+  .benefit-card {
+    padding: 2rem 1rem;
+    
+    &__icon {
+      width: 70px;
+      height: 70px;
+      
+      i {
+        font-size: 1.8rem;
+      }
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+    
+    p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  .benefits-background {
+    &__orb {
+      filter: blur(30px);
+      
+      &--1 {
+        width: 200px;
+        height: 200px;
+      }
+      
+      &--2 {
+        width: 150px;
+        height: 150px;
+      }
+      
+      &--3 {
+        width: 100px;
+        height: 100px;
+      }
     }
   }
 }

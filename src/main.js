@@ -101,10 +101,85 @@ const initPreloader = () => {
   }, 8000);
 };
 
-// Inicializar
-document.addEventListener('DOMContentLoaded', initPreloader);
-document.addEventListener('DOMContentLoaded', initHeader);
-document.addEventListener('DOMContentLoaded', initScrollAnimations);
-document.addEventListener('DOMContentLoaded', initTestimonials);
-document.addEventListener('DOMContentLoaded', initTecnologiaEnhanced);
-document.addEventListener('DOMContentLoaded', initContactAnimations);
+// Animaciones de aparición al hacer scroll
+function initBenefitsAnimations() {
+  const benefitCards = document.querySelectorAll('.benefit-card');
+  const benefitInfo = document.querySelector('.benefits-header');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  benefitCards.forEach(card => {
+    observer.observe(card);
+  });
+  
+  if (benefitInfo) {
+    observer.observe(benefitInfo);
+  }
+}
+
+function initModelsAnimations() {
+  const modelCards = document.querySelectorAll('.model-card');
+  const modelsHeader = document.querySelector('.models-header');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  modelCards.forEach(card => {
+    observer.observe(card);
+  });
+  
+  if (modelsHeader) {
+    observer.observe(modelsHeader);
+  }
+}
+
+// Inicializar todo en un solo DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Inicializando aplicación...');
+  
+  // Inicializar preloader primero
+  initPreloader();
+  
+  // Inicializar módulos
+  initHeader();
+  initScrollAnimations();
+  initTestimonials();
+  initTecnologiaEnhanced();
+  initContactAnimations();
+  
+  // Inicializar animaciones de las secciones que acabamos de mejorar
+  initBenefitsAnimations();
+  initModelsAnimations();
+  
+  console.log('Aplicación inicializada correctamente');
+});
+
+// Manejar errores de módulos
+window.addEventListener('error', function(e) {
+  console.error('Error en la aplicación:', e.error);
+  
+  // Si hay errores en módulos, al menos inicializar las funciones locales
+  try {
+    initBenefitsAnimations();
+    initModelsAnimations();
+  } catch (err) {
+    console.error('Error inicializando animaciones locales:', err);
+  }
+});

@@ -134,3 +134,40 @@ a {
   white-space: nowrap;
   border: 0;
 }
+
+// =============================================
+// SEPARADOR DE SECCIÓN REUTILIZABLE
+// =============================================
+.section-separator {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px; // Altura estándar de la "V"
+  overflow: hidden;
+  z-index: 2;
+  
+  // El SVG debe llenar el contenedor
+  .section-separator__svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  // --- ¡LA MAGIA! ---
+  // El polígono usará una variable CSS.
+  // Por defecto, será blanco (fallback).
+  .section-separator__fill {
+    fill: var(--separator-color, #{$white}); 
+  }
+
+  // --- Posicionamiento ---
+  &--top {
+    top: 0;
+    transform: translateY(calc(-100% + 1px));
+  }
+  
+  &--bottom {
+    bottom: 0;
+    transform: translateY(calc(100% - 1px)) rotate(180deg);
+  }
+}

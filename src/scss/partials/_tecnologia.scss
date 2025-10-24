@@ -508,8 +508,8 @@
   background: linear-gradient(160deg, lighten($black, 5%) 0%, $black 100%);
   
   // Ajuste de padding para dar espacio a los separadores
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
   
   @include max-width($breakpoint-md - 1) {
     padding-top: 7rem;
@@ -624,8 +624,8 @@
 
 @include max-width($breakpoint-sm - 1) {
   .section--dark {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
   }
   
   .feature-item {

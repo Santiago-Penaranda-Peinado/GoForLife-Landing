@@ -7,7 +7,7 @@
   // Usamos el fondo claro de tus variables
   background: $gray-light; 
   // Damos espacio para el separador
-  padding: 10rem 0 6rem 0; 
+  padding: 4rem 0 6rem 0; 
 
   @include max-width($breakpoint-md - 1) {
     padding-top: 7rem;
