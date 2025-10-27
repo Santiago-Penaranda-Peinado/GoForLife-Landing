@@ -1,0 +1,43 @@
+# .github/workflows/deploy.yml
+
+name: Build and Deploy GFL Landing
+
+on:
+  push:
+    branches:
+      - main # O la rama que uses para producción
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Asegúrate que sea tu versión de Node
+          cache: 'npm'
+
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+      
+      - name: Deploy with rsync
+        uses: easingthemes/ssh-deploy@v5.0.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          
+          # La carpeta 'dist' que genera 'npm run build'
+          SOURCE: "dist/" 
+          
+          # La carpeta de destino en Plesk
+          TARGET: ${{ secrets.TARGET_DIR }}
+          
+          # Borra archivos viejos en el destino
+          ARGS: --delete
