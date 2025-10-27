@@ -138,7 +138,7 @@ export const initTestimonials = () => {
     stopAutoPlay();
     autoPlayInterval = setInterval(() => {
       goToSlide(currentIndex + 1);
-    }, 5000); // 5 segundos
+    }, 4000); // 4 segundos
   }
   function stopAutoPlay() { clearInterval(autoPlayInterval); }
   function resetAutoPlay() { stopAutoPlay(); startAutoPlay(); }

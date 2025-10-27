@@ -1,0 +1,93 @@
+// src/scss/partials/_floating-buttons.scss
+@use 'variables' as *;
+
+.btn-floating {
+  position: fixed;
+  right: 25px;
+  overflow: hidden;
+  width: 55px;
+  height: 55px;
+  border-radius: 100px;
+  border: none;
+  z-index: 1000; // Un z-index alto para que esté sobre todo
+  color: white;
+  transition: all 0.3s ease-in-out;
+  font-size: 22px;
+  
+  // Usamos el color $black que ya tienes en tu footer, con transparencia
+  background-color: rgba(darken($black, 5%), 0.8); 
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    width: auto;
+    padding: 0 25px;
+    cursor: pointer;
+  }
+
+  span {
+    font-family: inherit; // Usa la fuente principal del sitio
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+    display: none;
+    vertical-align: middle;
+  }
+
+  &:hover span {
+    display: inline-block;
+  }
+
+  i {
+    vertical-align: middle;
+  }
+}
+
+/* --- Posiciones y Colores Específicos para Go For Life --- */
+
+.btn-floating.whatsapp {
+  bottom: 100px;
+  background-color: #25D366;
+  &:hover {
+    box-shadow: 0 0 20px 0 rgba(37, 211, 102, 0.7);
+  }
+}
+
+.btn-floating.phone {
+  bottom: 30px;
+  
+  // Usamos la variable $accent-color de tu proyecto (el verde/turquesa)
+  background-color: $accent-color; 
+  
+  &:hover {
+    // Usamos la misma variable para el brillo
+    box-shadow: 0 0 20px 0 rgba($accent-color, 0.7);
+  }
+}
+
+/* --- Responsividad para Móviles --- */
+@media (max-width: 767px) {
+  .btn-floating {
+    width: 50px;
+    height: 50px;
+    right: 15px;
+    font-size: 20px;
+
+    // En móvil, el texto no se expande
+    &:hover {
+      width: 50px;
+      padding: 0;
+    }
+    &:hover span {
+      display: none;
+    }
+  }
+
+  // Ajustamos posiciones para móvil (solo 2 botones)
+  .btn-floating.whatsapp {
+    bottom: 90px;
+  }
+  .btn-floating.phone {
+    bottom: 20px;
+  }
+}

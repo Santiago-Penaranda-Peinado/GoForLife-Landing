@@ -2,15 +2,14 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// --- 1. Header de la Sección (Simplificado) ---
-// (Tu HTML usa .models-header, no .section-header)
+// --- 1. Header de la Sección ---
 .models-header {
   text-align: center;
   margin-bottom: 4rem;
 
   .section-subtitle {
     display: block;
-    color: $accent-color; //
+    color: $accent-color;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -19,14 +18,14 @@
   }
 
   .section-title {
-    color: $black; //
+    color: $black;
     margin-bottom: 1.5rem;
-    font-size: clamp(2rem, 5vw, 3rem); // Consistente
+    font-size: clamp(2rem, 5vw, 3rem);
   }
 
   .section-description {
     font-size: 1.2rem;
-    color: $gray-medium; //
+    color: $gray-medium;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -36,100 +35,124 @@
 // --- 2. Grid de Modelos ---
 .models-grid {
   display: grid;
-  grid-template-columns: 1fr; // Mobile-first
+  grid-template-columns: 1fr;
   gap: 2.5rem;
-  
-  // Centramos las 2 tarjetas en desktop
-  max-width: 900px; 
+  max-width: 900px;
   margin: 0 auto;
 
-  // 2 columnas en desktop
-  @include min-width($breakpoint-md) { //
+  @include min-width($breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);
-    
-    // ¡Importante para que las tarjetas tengan la misma altura!
-    align-items: stretch; 
+    align-items: stretch;
   }
 }
 
 // --- 3. Tarjeta de Modelo (Base) ---
 .model-card {
-  // ¡Claves para igualar altura!
   display: flex;
   flex-direction: column;
-  height: 100%; 
-
+  height: 100%;
   background: $white;
   opacity: 0;
   transform: translateY(40px);
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  border-radius: $border-radius; //
-  padding: 2.5rem;
-  box-shadow: $box-shadow-soft; //
+  border-radius: $border-radius;
+  overflow: hidden; // Importante para la imagen
+  box-shadow: $box-shadow-soft;
   position: relative;
-  
-  // Placeholder para borde en hover/featured
-  border: 2px solid transparent; 
-  
-  // Transición LIMPIA (solo lo que necesitamos)
+  border: 2px solid transparent;
   transition: transform $transition-speed-normal ease, 
               box-shadow $transition-speed-normal ease,
               border-color $transition-speed-normal ease,
               opacity 0.6s ease,
               transform 0.6s ease;
 
-  // ¡HOVER FUNCIONAL!
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   &:hover {
-    transform: translateY(-8px); 
-    box-shadow: $box-shadow-medium; 
+    transform: translateY(-8px);
+    box-shadow: $box-shadow-medium;
   }
 }
 
-// --- 4. Tarjeta Destacada ---
+// --- 4. Sección de Imagen con Máscara de Onda ---
+.model-card__image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-speed-slow ease;
+  }
+
+  .image-wave-mask {
+    position: absolute;
+    bottom: -1px; // Para evitar líneas blancas
+    left: 0;
+    width: 100%;
+    height: 50px;
+    color: $white; // El SVG heredará este color
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  // Efecto hover en la imagen
+  .model-card:hover & img {
+    transform: scale(1.05);
+  }
+}
+
+// --- 5. Tarjeta Destacada ---
 .model-card--featured {
-  // Hacemos que "salte" a la vista
   border-color: $accent-color;
   background: linear-gradient($white, lighten($accent-color, 45%));
-  
-  // El badge (más simple que el ribbon)
+
   &::before {
-    content: 'Recomendado'; //
+    content: 'Recomendado';
     position: absolute;
-    top: -15px; // Lo sacamos
-    right: 1.5rem;
+    top: 1.5rem;
+    right: -2rem;
     background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
     color: $black;
-    padding: 0.5rem 1.25rem;
-    border-radius: 50px; // Redondo
+    padding: 0.5rem 2rem;
+    border-radius: 4px;
     font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
     box-shadow: 0 5px 15px rgba($accent-color, 0.4);
-    z-index: 2;
+    z-index: 10;
+    transform: rotate(45deg);
+    transform-origin: center;
   }
 
-  // Solo escalamos en desktop (para no romper el layout móvil)
+  .model-card__image .image-wave-mask {
+    color: lighten($accent-color, 45%); // Para que combine con el fondo degradado
+  }
+
   @include min-width($breakpoint-md) {
     transform: scale(1.03);
   }
 
   &:hover {
-    // Un hover más pronunciado
-    transform: translateY(-8px) scale(1.05); //
-    box-shadow: $box-shadow-large; //
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: $box-shadow-large;
   }
 }
 
-// --- 5. Contenido de la Tarjeta ---
+// --- 6. Contenido de la Tarjeta ---
 .model-card__header {
   text-align: center;
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid $gray-border; //
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid $gray-border;
 
   h3 {
     color: $black;
@@ -139,54 +162,51 @@
 }
 
 .model-card__price {
-  font-family: $font-primary; //
+  font-family: $font-primary;
   font-size: 2.25rem;
   font-weight: 700;
-  color: $primary-color; //
+  color: $primary-color;
   transition: color $transition-speed-normal ease;
 
-  // Precio destacado
   .model-card--featured & {
     color: $accent-color;
   }
 }
 
 .model-card__features {
-  // ¡Clave para igualar altura!
-  // Hace que esta sección crezca
-  flex-grow: 1; 
+  flex-grow: 1;
   margin-bottom: 2.5rem;
+  padding: 0 2.5rem;
 
   ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1rem; // Espacio entre items
+    gap: 1rem;
   }
 
   li {
     display: flex;
-    align-items: flex-start; // Alinea bien si el texto tiene 2+ líneas
+    align-items: flex-start;
     gap: 0.75rem;
-    color: $gray-dark; //
+    color: $gray-dark;
     font-size: 0.95rem;
 
     i {
       color: $accent-color;
       font-size: 1.1rem;
       margin-top: 0.2rem;
-      flex-shrink: 0; // Evita que el ícono se encoja
+      flex-shrink: 0;
       width: 20px;
       text-align: center;
       transition: transform $transition-speed-normal ease;
     }
     
-    span { // Tu HTML ya usa <span>
+    span {
       flex-grow: 1;
       line-height: 1.6;
     }
 
-    // Hover simple en cada feature
     &:hover {
       i {
         transform: scale(1.2);
@@ -199,51 +219,52 @@
 }
 
 .model-card__cta {
-  // ¡Clave para igualar altura!
-  // Se alinea al fondo
-  margin-top: auto; 
+  margin-top: auto;
   text-align: center;
+  padding: 0 2.5rem 2.5rem;
 
   .btn {
-    width: 100%; // Botón de ancho completo
+    width: 100%;
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
   }
 }
-// ===============================================
-//  ESTILOS DEL SEPARADOR DE SECCIÓN
-// ===============================================
 
-.section-separator {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 80px; // La altura de tu ángulo
-  overflow: hidden;
-
-  svg {
-    width: 100%;
-    height: 100%;
-    padding-top: 32px;
+// --- 7. Responsive para imágenes ---
+@include max-width($breakpoint-sm - 1) {
+  .model-card__image {
+    height: 160px;
+    
+    .image-wave-mask {
+      height: 40px;
+    }
   }
-
-  .section-separator__fill-models {
-    // Este color DEBE COINCIDIR con el fondo
-    // de la sección actual (#modelos), que es $white.
-    fill: #ebebeb; 
-  }
-
-  &--top {
-    top: 0;
-    // Truco: Lo movemos 1px menos del 100% para evitar líneas finas
-    transform: translateY(calc(-100% + 1px)); 
+  
+  .model-card__header,
+  .model-card__features,
+  .model-card__cta {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
-// --- AJUSTE A LA SECCIÓN ---
-// ¡Necesitamos que la sección sea un contenedor relativo!
+
+// --- 8. Ajustes para móviles muy pequeños ---
+@include max-width(360px) {
+  .model-card__image {
+    height: 140px;
+  }
+  
+  .model-card--featured::before {
+    top: 1rem;
+    right: -2.5rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 1.5rem;
+  }
+}
+
+// --- 9. Ajuste a la sección ---
 .models-section {
   position: relative;
-  // Aseguramos el fondo blanco para que coincida con el SVG
-  background: #ebebeb; 
+  background: #ebebeb;
 }

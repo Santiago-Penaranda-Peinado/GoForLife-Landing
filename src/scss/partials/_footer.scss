@@ -3,99 +3,291 @@
 @use 'mixins' as *;
 
 .site-footer {
-  background: $black; //
-  color: rgba($white, 0.7); //
-  padding: 4rem 0 0; // Más padding arriba, quitamos el de abajo
+  background: linear-gradient(135deg, $black 0%, $gray-dark 100%);
+  color: rgba($white, 0.8);
+  padding: 4rem 0 0;
+  position: relative;
+  overflow: hidden;
+
+  // Efecto de patrón sutil
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba($primary-color, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba($accent-color, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
 
   // Grid principal del footer
   .footer-content {
     display: grid;
-    // Un grid más robusto
-    grid-template-columns: 2fr 1fr; // Columna de marca más ancha
+    grid-template-columns: 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
 
-    @include desktop {
-      grid-template-columns: 2fr 1fr 1fr; // 3 columnas en desktop
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
     }
-    
-    @include max-width($breakpoint-md - 1) {
-      grid-template-columns: 1fr; // 1 columna en móvil
+
+    @include desktop {
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 4rem;
     }
   }
 
-  // Columna 1: Marca
+  // Columna Brand
   .footer-brand {
     .footer-logo {
-      height: 45px; // Un poco más grande
+      height: 50px;
       margin-bottom: 1.5rem;
-    }
+      //filter: brightness(0) invert(1);
+      transition: transform $transition-speed-normal ease;
 
-    p {
-      font-size: 0.95rem;
-      line-height: 1.7; //
-      max-width: 400px; // Evita que se estire
-    }
-  }
-
-  // Columna 2: Contacto (o links)
-  .footer-contact {
-    h4 {
-      color: $white;
-      margin-bottom: 1.5rem; // Más espacio
-      font-size: 1.25rem;
-      position: relative;
-
-      // Línea de acento
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 40px;
-        height: 3px;
-        background: $accent-color; //
+      &:hover {
+        transform: scale(1.05);
       }
     }
 
-    p {
+    .footer-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 400px;
+      color: rgba($white, 0.7);
+    }
+
+    .footer-social {
       display: flex;
-      align-items: center;
-      gap: 0.75rem; //
-      margin-bottom: 1rem; //
-      font-size: 0.95rem;
+      gap: 1rem;
 
-      i {
-        color: $accent-color; //
-        width: 20px;
-        font-size: 1.1rem;
-        text-align: center;
-      }
-
-      // Hacemos que los datos de contacto sean links
-      a {
-        color: rgba($white, 0.7);
+      .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba($white, 0.1);
+        border: 1px solid rgba($white, 0.2);
+        border-radius: 50%;
+        color: $white;
         text-decoration: none;
         transition: all $transition-speed-normal ease;
-        
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+          transition: left $transition-speed-slow ease;
+        }
+
         &:hover {
-          color: $white;
-          text-decoration: underline;
+          background: $primary-color;
+          border-color: $primary-color;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba($primary-color, 0.3);
+
+          &::before {
+            left: 100%;
+          }
+
+          i {
+            transform: scale(1.1);
+          }
+        }
+
+        i {
+          font-size: 1.1rem;
+          transition: transform $transition-speed-normal ease;
         }
       }
     }
   }
 
-  // --- Copyright (Bottom bar) ---
+  // Columnas de navegación
+  .footer-nav,
+  .footer-contact {
+    .footer-title {
+      color: $white;
+      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 0.75rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, $accent-color, $secondary-color);
+        border-radius: 2px;
+      }
+    }
+
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.75rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .footer-link {
+      color: rgba($white, 0.7);
+      text-decoration: none;
+      transition: all $transition-speed-normal ease;
+      position: relative;
+      padding-left: 0;
+      display: inline-block;
+
+      &::before {
+        content: '›';
+        position: absolute;
+        left: -1rem;
+        opacity: 0;
+        transition: all $transition-speed-normal ease;
+        color: $accent-color;
+      }
+
+      &:hover {
+        color: $white;
+        padding-left: 1rem;
+
+        &::before {
+          opacity: 1;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  // Sección de contacto
+  .footer-contact {
+    .contact-info {
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba($white, 0.1);
+
+        &:last-child {
+          margin-bottom: 0;
+          border-bottom: none;
+        }
+
+        .contact-icon {
+          color: $accent-color;
+          width: 20px;
+          font-size: 1.1rem;
+          text-align: center;
+        }
+
+        .contact-link {
+          color: rgba($white, 0.7);
+          text-decoration: none;
+          transition: all $transition-speed-normal ease;
+          font-weight: 500;
+
+          &:hover {
+            color: $white;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  // Footer Bottom
   .footer-bottom {
-    border-top: 1px solid rgba($white, 0.1); //
-    padding: 1.5rem 0; //
-    text-align: center;
-    color: rgba($white, 0.5); //
-    font-size: 0.9rem; //
-    
-    @include desktop {
-      @include flex-between; //
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 2rem 0;
+
+    .footer-bottom-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+      }
+
+      .copyright {
+        color: rgba($white, 0.6);
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom-links {
+        .privacy-link {
+          color: rgba($white, 0.6);
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: all $transition-speed-normal ease;
+          padding: 0.5rem 1rem;
+          border: 1px solid rgba($white, 0.2);
+          border-radius: $border-radius;
+
+          &:hover {
+            color: $white;
+            background: rgba($white, 0.1);
+            border-color: rgba($white, 0.3);
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive adicional para móviles pequeños
+  @include max-width($breakpoint-sm - 1) {
+    padding: 3rem 0 0;
+
+    .footer-content {
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand {
+      .footer-social {
+        justify-content: center;
+        
+        @include tablet {
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    .footer-bottom {
+      padding: 1.5rem 0;
     }
   }
 }
