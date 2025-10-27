@@ -138,7 +138,7 @@ export const initTestimonials = () => {
     stopAutoPlay();
     autoPlayInterval = setInterval(() => {
       goToSlide(currentIndex + 1);
-    }, 4000); // 4 segundos
+    }, 3500); // 3.5 segundos
   }
   function stopAutoPlay() { clearInterval(autoPlayInterval); }
   function resetAutoPlay() { stopAutoPlay(); startAutoPlay(); }
@@ -176,5 +176,5 @@ export const initTestimonials = () => {
     startAutoPlay();
   }, 100);
   
-  console.log('Slider Premium v5 (Desde Cero) inicializado.');
+  console.log('Slider Premium v5 inicializado.');
 };

@@ -38,5 +38,5 @@ export const initScrollAnimations = () => {
     observer.observe(el);
   });
 
-  console.log('Scroll Animations inicializado (v2 - Class-based)');
+  
 };
