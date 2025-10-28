@@ -22,6 +22,7 @@ $telefono  = htmlspecialchars(trim($_POST['telefono'] ?? ''));
 $email     = htmlspecialchars(trim($_POST['email'] ?? ''));
 $modelo    = htmlspecialchars(trim($_POST['modelo'] ?? 'No seleccionado'));
 $inversion = htmlspecialchars(trim($_POST['inversion'] ?? 'No especificado'));
+$mensaje   = htmlspecialchars(trim($_POST['mensaje'] ?? ''));
 
 // --- Validación Sencilla ---
 // Validamos los campos requeridos en tu HTML
@@ -39,6 +40,7 @@ $cuerpoCorreo = "
     <hr>
     <p><strong>Modelo de Interés:</strong> {$modelo}</p>
     <p><strong>Inversión Aproximada:</strong> {$inversion}</p>
+    <p><strong>Mensaje:</strong> " . nl2br($mensaje) . "</p>
 ";
 
 // --- Configuración de PHPMailer ---
