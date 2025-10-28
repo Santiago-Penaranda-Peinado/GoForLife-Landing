@@ -22,6 +22,7 @@ $telefono  = htmlspecialchars(trim($_POST['telefono'] ?? ''));
 $email     = htmlspecialchars(trim($_POST['email'] ?? ''));
 $modelo    = htmlspecialchars(trim($_POST['modelo'] ?? 'No seleccionado'));
 $inversion = htmlspecialchars(trim($_POST['inversion'] ?? 'No especificado'));
+$ciudad    = htmlspecialchars(trim($_POST['ciudad'] ?? 'No especificado'));
 $mensaje   = htmlspecialchars(trim($_POST['mensaje'] ?? ''));
 
 // --- Validación Sencilla ---

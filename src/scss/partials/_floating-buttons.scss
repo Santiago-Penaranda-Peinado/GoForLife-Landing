@@ -46,7 +46,7 @@
 /* --- Posiciones y Colores Específicos para Go For Life --- */
 
 .btn-floating.whatsapp {
-  bottom: 100px;
+  bottom: 170px;
   background-color: #25D366;
   &:hover {
     box-shadow: 0 0 20px 0 rgba(37, 211, 102, 0.7);
@@ -54,7 +54,7 @@
 }
 
 .btn-floating.phone {
-  bottom: 30px;
+  bottom: 100px;
   
   // Usamos la variable $accent-color de tu proyecto (el verde/turquesa)
   background-color: $accent-color; 
@@ -66,7 +66,7 @@
 }
 
 .btn-floating.email {
-  bottom: 170px;
+  bottom: 30px;
   background-color: #007BFF; // Azul para email
   &:hover {
     box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.7);
@@ -97,5 +97,8 @@
   }
   .btn-floating.phone {
     bottom: 20px;
+  }
+  .btn-floating.email {
+    display: none; // Ocultamos el botón de email en móvil
   }
 }
