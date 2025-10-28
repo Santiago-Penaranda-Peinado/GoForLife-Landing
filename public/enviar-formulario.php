@@ -48,7 +48,7 @@ $mail = new PHPMailer(true);
 $correoDestino = 'gflmtex@gmail.com'; // El correo de GMAIL donde se recibirá
 
 try {
-    $mail->IsSMTP();
+   $mail->IsSMTP();
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'tls';
     $mail->Host = "smtp.ionos.mx";
@@ -62,8 +62,6 @@ try {
     
     $mail->SMTPDebug = 0; 
     $mail->Debugoutput = 'html';
-
-    $mail->CharSet = 'UTF-8';
     
     // Remitente (Debe ser el mismo que tu Username de SMTP)
     $mail->setFrom('formularios@wde.com.mx', 'Formulario Web');
