@@ -171,3 +171,21 @@ a {
     transform: translateY(calc(100% - 1px)) rotate(180deg);
   }
 }
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit !important;
+}

@@ -9,39 +9,71 @@
   margin-top: $header-height-initial;
 
   @include max-width($breakpoint-lg - 1) {
-    margin-top: 0;
+    margin-top: 110px;
   }
 }
 
-// --- CONTENEDOR DE VIDEO LIMPIO ---
+// --- CONTENEDOR DE VIDEO PARA AMBAS VERSIONES ---
 .hero__background-container {
   position: relative;
   display: none;
 
-  
+  @include desktop {
     display: block;
     width: 100%;
     height: 0;
     padding-bottom: 31.57%; // = (600/1900)*100% para mantener aspect ratio
     position: relative;
-    background: $black; // Fondo negro mientras carga el video
-    margin-top: 110px !important;
-  
+    background: $black;
+  }
+
+  // Versión móvil del contenedor de video
+  @include max-width($breakpoint-lg - 1) {
+    display: block;
+    width: 100%;
+    height: 132px; // Altura fija para móvil
+    background: $black;
+    
+    // Overlay para mejorar legibilidad del texto en móvil
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+  }
 }
 
 .hero__video {
-  
+  @include desktop {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; // Mantiene el video completo sin recortes
+    object-fit: contain; // Mantiene el video completo sin recortes en desktop
     
     // Efecto de carga suave
     opacity: 0;
     animation: videoFadeIn 1.5s ease forwards 0.3s;
-  
+  }
+
+  // Versión móvil del video
+  @include max-width($breakpoint-lg - 1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // En móvil usamos cover para que llene la pantalla
+    
+    // Efecto de carga suave
+    opacity: 0;
+    animation: videoFadeIn 1.5s ease forwards 0.3s;
+  }
 }
 
 @keyframes videoFadeIn {
@@ -50,91 +82,24 @@
   }
 }
 
-// --- HERO PARA MÓVIL CON SLIDER DE FONDOS ---
+// --- ELIMINAMOS EL SLIDER MÓVIL Y MANTENEMOS SOLO EL CONTENIDO ---
 .hero__mobile-background {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-
-  @include desktop {
-    display: none;
-  }
-
-  // Contenedor del slider de imágenes
-  .hero__mobile-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    .hero__slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      
-      // Imágenes de fondo para el slider
-      &.slide-1 {
-        background-image: url('/images/goforlife-producto-movil.jpeg');
-        animation: slideShow 12s infinite;
-      }
-      
-      &.slide-2 {
-        background-image: url('/images/mobile-slide-2.jpg');
-        animation: slideShow 12s infinite 4s;
-      }
-      
-      &.slide-3 {
-        background-image: url('/images/mobile-slide-3.jpg');
-        animation: slideShow 12s infinite 8s;
-      }
-    }
-  }
-
-  // Overlay para mejorar legibilidad del texto
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba($black, 0.6) 0%,
-      rgba($black, 0.5) 50%,
-      rgba($black, 0.7) 100%
-    );
-    z-index: 2;
-  }
+  display: none; // Eliminamos el slider de imágenes
 }
 
-@keyframes slideShow {
-  0% { opacity: 0; }
-  25% { opacity: 1; }
-  50% { opacity: 1; }
-  75% { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-// --- CONTENEDOR Y CONTENIDO SOLO MÓVIL ---
+// --- CONTENEDOR Y CONTENIDO PARA AMBAS VERSIONES ---
 .hero__container {
   position: relative;
-  z-index: 3; // Por encima del fondo y overlay
+  z-index: 3;
   
+  // Ahora también se muestra en desktop
   @include desktop {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -146,107 +111,194 @@
   flex-direction: column;
   justify-content: center;
   
+  // Versión desktop del contenido
   @include desktop {
-    display: none;
-  }
-
-  // --- Animaciones de entrada para el contenido móvil ---
-  .hero__title {
-    color: $white;
-    margin-bottom: 1.5rem;
-    @include text-shadow;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-
-    // Animación
-    opacity: 0;
-    transform: translateY(20px);
-    animation: heroContentFadeIn 1s ease 0.2s forwards;
-  }
-
-  .hero__description {
-    color: rgba($white, 0.95);
-    margin-bottom: 2.5rem;
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-    
-    // Animación
-    opacity: 0;
-    transform: translateY(20px);
-    animation: heroContentFadeIn 1s ease 0.4s forwards;
-  }
-
-  .hero__cta-group {
-    display: flex;
-    gap: 1rem;
+    padding: 0;
+    height: 100%;
     justify-content: center;
-    flex-wrap: wrap;
-
-    // Animación
-    opacity: 0;
-    transform: translateY(20px);
-    animation: heroContentFadeIn 1s ease 0.6s forwards;
+    align-items: center;
     
-    .btn {
-      transform: translateY(0);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
+    .hero__title {
+      color: $white;
+      margin-bottom: 1.5rem;
+      @include text-shadow;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 800px;
       
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
-        transition: left 0.5s;
-      }
+      // Animación para desktop
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroContentFadeIn 1s ease 0.5s forwards;
+    }
+
+    .hero__description {
+      color: rgba($white, 0.95);
+      margin-bottom: 2.5rem;
+      font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
       
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba($black, 0.3);
+      // Animación para desktop
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroContentFadeIn 1s ease 0.7s forwards;
+    }
+
+    .hero__cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      
+      // Animación para desktop
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroContentFadeIn 1s ease 0.9s forwards;
+      
+      .btn {
+        transform: translateY(0);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
         
         &::before {
-          left: 100%;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+          transition: left 0.5s;
+        }
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba($black, 0.3);
+          
+          &::before {
+            left: 100%;
+          }
+        }
+      }
+      
+      .btn--primary {
+        background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
+        border: none;
+        padding: 1rem 2.5rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1.1rem;
+      }
+      
+      .btn--outline {
+        border: 2px solid rgba($white, 0.8);
+        background: transparent;
+        color: $white;
+        padding: calc(1rem - 2px) calc(2.5rem - 2px);
+        font-size: 1.1rem;
+        
+        &:hover {
+          background: rgba($white, 0.1);
+          border-color: $white;
         }
       }
     }
-    
-    .btn--primary {
-      background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
-      border: none;
-      padding: 1rem 2rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    
-    .btn--outline {
-      border: 2px solid rgba($white, 0.8);
-      background: transparent;
+  }
+
+  // Versión móvil del contenido (mantenemos tus estilos originales)
+  @include max-width($breakpoint-lg - 1) {
+    .hero__title {
       color: $white;
-      padding: calc(1rem - 2px) calc(2rem - 2px);
+      margin-bottom: 1.5rem;
+      @include text-shadow;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroContentFadeIn 1s ease 0.2s forwards;
+    }
+
+    .hero__description {
+      color: rgba($white, 0.95);
+      margin-bottom: 2.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroContentFadeIn 1s ease 0.4s forwards;
+    }
+
+    .hero__cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroContentFadeIn 1s ease 0.6s forwards;
       
-      &:hover {
-        background: rgba($white, 0.1);
-        border-color: $white;
+      .btn {
+        transform: translateY(0);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+          transition: left 0.5s;
+        }
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba($black, 0.3);
+          
+          &::before {
+            left: 100%;
+          }
+        }
+      }
+      
+      .btn--primary {
+        background: linear-gradient(135deg, $accent-color, lighten($accent-color, 10%));
+        border: none;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      
+      .btn--outline {
+        border: 2px solid rgba($white, 0.8);
+        background: transparent;
+        color: $white;
+        padding: calc(1rem - 2px) calc(2rem - 2px);
+        
+        &:hover {
+          background: rgba($white, 0.1);
+          border-color: $white;
+        }
       }
     }
   }
-  
-  // --- ELIMINAMOS la imagen móvil individual ---
-  .hero__image-mobile {
-    display: none;
-  }
 }
 
-// Keyframe genérico para el contenido móvil
+// Keyframe genérico para el contenido
 @keyframes heroContentFadeIn {
   to {
     opacity: 1;
