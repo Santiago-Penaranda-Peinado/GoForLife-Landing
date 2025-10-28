@@ -52,7 +52,7 @@ try {
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'tls';
     $mail->Host = "smtp.ionos.mx";
-    $mail->Port = 465;
+    $mail->Port = 587;
     
     $mail->Username = "formularios@wde.com.mx"; 
     $mail->Password = "Wde.2025!";
