@@ -65,6 +65,14 @@
   }
 }
 
+.btn-floating.email {
+  bottom: 170px;
+  background-color: #007BFF; // Azul para email
+  &:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.7);
+  }
+}
+
 /* --- Responsividad para Móviles --- */
 @media (max-width: 767px) {
   .btn-floating {
