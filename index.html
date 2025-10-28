@@ -523,56 +523,57 @@
           </div>
           
           <div class="contact-form-wrapper">
-            <form class="contact-form" action="TU_ENDPOINT_DE_FORMULARIO" method="POST"> <h3 class="contact-form__title">
-                <i class="fas fa-bolt me-2" style="color: #4ADE80;"></i>
-                Solicita tu Cotización
+            <form class="contact-form" action="enviar-formulario.php" method="POST">
+              <h3 class="contact-form__title">
+                  <i class="fas fa-bolt me-2" style="color: #4ADE80;"></i>
+                  Solicita tu Cotización
               </h3>
               
               <div class="form-group">
-                <label class="form-group__label">Nombre Completo *</label>
-                <input type="text" name="nombre" class="form-group__input" placeholder="Ej: Juan Carlos Rodríguez" required>
+                  <label class="form-group__label">Nombre Completo *</label>
+                  <input type="text" name="nombre" class="form-group__input" placeholder="Ej: Juan Carlos Rodríguez" required>
               </div>
               
               <div class="form-group">
-                <label class="form-group__label">Teléfono *</label>
-                <input type="tel" name="telefono" class="form-group__input" placeholder="10 dígitos (Ej: 3312345678)" 
-                      pattern="[0-9]{10}" required>
+                  <label class="form-group__label">Teléfono *</label>
+                  <input type="tel" name="telefono" class="form-group__input" placeholder="10 dígitos (Ej: 3312345678)" 
+                        pattern="[0-9]{10}" required>
               </div>
               
               <div class="form-group">
-                <label class="form-group__label">Email *</label>
-                <input type="email" name="email" class="form-group__input" placeholder="tu.email@ejemplo.com" required>
+                  <label class="form-group__label">Email *</label>
+                  <input type="email" name="email" class="form-group__input" placeholder="tu.email@ejemplo.com" required>
               </div>
               
               <div class="form-group">
-                <label class="form-group__label">Modelo de Interés *</label>
-                <select class="form-group__select" name="modelo" required>
-                  <option value="">Selecciona tu modelo preferido</option>
-                  <option value="tradicional">🏪 Modelo Tradicional</option>
-                  <option value="automatico">🤖 Ventanas Automáticas 24/7</option>
-                  <option value="ambos">💼 Ambos / No estoy seguro</option>
-                </select>
+                  <label class="form-group__label">Modelo de Interés *</label>
+                  <select class="form-group__select" name="modelo" required>
+                    <option value="">Selecciona tu modelo preferido</option>
+                    <option value="tradicional">🏪 Modelo Tradicional</option>
+                    <option value="automatico">🤖 Ventanas Automáticas 24/7</option>
+                    <option value="ambos">💼 Ambos / No estoy seguro</option>
+                  </select>
               </div>
               
               <div class="form-group">
-                <label class="form-group__label">Inversión Aproximada</label>
-                <select class="form-group__select" name="inversion">
-                  <option value="">Selecciona tu rango de inversión</option>
-                  <option value="50-100">$50,000 - $100,000 MXN</option>
-                  <option value="100-200">$100,000 - $200,000 MXN</option>
-                  <option value="200-plus">+$200,000 MXN</option>
-                  <option value="no-se">Aún no lo sé</option>
-                </select>
+                  <label class="form-group__label">Inversión Aproximada</label>
+                  <select class="form-group__select" name="inversion">
+                    <option value="">Selecciona tu rango de inversión</option>
+                    <option value="50-100">$50,000 - $100,000 MXN</option>
+                    <option value="100-200">$100,000 - $200,000 MXN</option>
+                    <option value="200-plus">+$200,000 MXN</option>
+                    <option value="no-se">Aún no lo sé</option>
+                  </select>
               </div>
               
               <button type="submit" class="contact-submit">
-                <span>Iniciar mi Proyecto</span>
-                <i class="fas fa-paper-plane contact-submit__icon"></i>
+                  <span>Iniciar mi Proyecto</span>
+                  <i class="fas fa-paper-plane contact-submit__icon"></i>
               </button>
               
               <p style="color: rgba(255,255,255,0.7); text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
-                <i class="fas fa-shield-alt me-1"></i>
-                Tus datos están 100% protegidos. No compartimos información con terceros.
+                  <i class="fas fa-shield-alt me-1"></i>
+                  Tus datos están 100% protegidos. No compartimos información con terceros.
               </p>
             </form>
           </div>
