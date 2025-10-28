@@ -8,6 +8,46 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5T6M4MDV');</script>
   <!-- End Google Tag Manager -->
+  <!-- Global site tag (gtag.js) - Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10959842291"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    // ID principal recibido (install) y adicional usado por los eventos
+    gtag('config', 'AW-10959842291');
+    // Aseguramos que la otra propiedad usada en los snippets esté configurada
+    gtag('config', 'AW-17575125653');
+  </script>
+
+  <!-- Conversion helper functions (WhatsApp & Call) -->
+  <script>
+    function gtag_report_conversion_whatsapp(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
+        'event_callback': callback
+      });
+      return false;
+    }
+
+    function gtag_report_conversion_call(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17575125653/BA5XCJKkxrUbEJXFvLxB',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Go For Life México - Plantas Purificadoras de Agua</title>
@@ -214,7 +254,7 @@
                         </ul>
                     </div>
                     <div class="model-card__cta">
-                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Modelo%20Tradicional,%20" target="_blank" class="btn btn--primary">Quiero Este Modelo</a>
+                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Modelo%20Tradicional,%20" target="_blank" class="btn btn--primary" onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Modelo%20Tradicional,%20');">Quiero Este Modelo</a>
                     </div>
                 </div>
                 
@@ -241,7 +281,7 @@
                         </ul>
                     </div>
                     <div class="model-card__cta">
-                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Ventanas%20Autom%C3%A1ticas,%20" target="_blank" class="btn btn--primary">Quiero Este Modelo</a>
+                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Ventanas%20Autom%C3%A1ticas,%20" target="_blank" class="btn btn--primary" onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Ventanas%20Autom%C3%A1ticas,%20');">Quiero Este Modelo</a>
                     </div>
                 </div>
             </div>
@@ -472,7 +512,7 @@
                 </div>
                 <div class="contact-details__content">
                   <span class="contact-details__content-label">Teléfonos de Contacto</span>
-                  <a href="tel:5564989450" class="contact-details__content-value" style="display: block; margin-bottom: 5px;">
+                  <a href="tel:5564989450" class="contact-details__content-value" style="display: block; margin-bottom: 5px;" onclick="return gtag_report_conversion_call('tel:5564989450');">
                     55 6498 9450
                   </a>
                   <a href="tel:5571177249" class="contact-details__content-value" style="display: block; margin-bottom: 5px;">
@@ -525,7 +565,7 @@
                   <span class="contact-details__content-label">WhatsApp</span>
                   <a href="https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20" 
                     class="contact-details__content-value" 
-                    target="_blank">
+                    target="_blank" onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20');">
                     55 7117 7249
                   </a>
                   <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;">
@@ -687,14 +727,15 @@
   <a href="https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20" 
      target="_blank" 
      aria-label="Enviar WhatsApp" 
-     rel="noopener noreferrer">
+     rel="noopener noreferrer"
+     onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20');">
     <button class="btn-floating whatsapp">
       <i class="fab fa-whatsapp"></i>
       <span>WhatsApp 55 7117 7249</span>
     </button>
   </a>
 
-  <a href="tel:5571177249" aria-label="Llamar por teléfono">
+  <a href="tel:5571177249" aria-label="Llamar por teléfono" onclick="return gtag_report_conversion_call('tel:5571177249');">
     <button class="btn-floating phone">
       <i class="fas fa-phone"></i>
       <span>Llamar 55 7117 7249</span>
