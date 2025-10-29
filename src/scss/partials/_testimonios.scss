@@ -4,16 +4,13 @@
 
 .testimonios-section {
   position: relative;
-  // Usamos el fondo claro de tus variables
   background: $white; 
-  // Damos espacio para el separador
   padding: 4rem 0 6rem 0; 
 
   @include max-width($breakpoint-md - 1) {
     padding-top: 7rem;
   }
 
-  // --- Estilos del Separador ---
   .section-separator--top {
     position: absolute;
     top: 0;
@@ -25,13 +22,11 @@
     
     svg { width: 100%; height: 100%; }
     
-    // El fill coincide con la sección oscura anterior (#tecnologia)
     .section-separator__fill-testimonios {
       fill: #f8f9fa; 
     }
   }
 
-  // --- Estilos del Header ---
   .section-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -43,13 +38,245 @@
   }
 }
 
-// --- Wrapper (CRÍTICO) ---
+// --- NUEVO CARRUSEL DE IMÁGENES ---
+.image-gallery-section {
+  margin-bottom: 4rem;
+}
+
+.image-gallery {
+  position: relative;
+  overflow: hidden;
+  
+  &__track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    gap: 1rem;
+  }
+  
+  &__slide {
+    flex: 0 0 calc(33.333% - 0.67rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    @include max-width($breakpoint-lg - 1) {
+      flex-basis: calc(50% - 0.5rem);
+    }
+    
+    @include max-width($breakpoint-sm - 1) {
+      flex-basis: 100%;
+    }
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  &__image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; // Aspect ratio 1:1 (cuadrado)
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: $box-shadow-medium;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: $box-shadow-large;
+    }
+  }
+  
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  &__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  &__btn {
+    @include button-reset;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $white;
+    color: $primary-color;
+    font-size: 1.1rem;
+    box-shadow: $box-shadow-medium;
+    transition: all $transition-speed-normal ease;
+    z-index: 10;
+    
+    &:hover {
+      background: $primary-color;
+      color: $white;
+      transform: scale(1.1);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: scale(1);
+      background: $gray-light;
+    }
+  }
+  
+  &__pagination {
+    display: flex;
+    gap: 0.75rem;
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba($primary-color, 0.2);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all $transition-speed-normal ease;
+      
+      &.is-active {
+        background: $primary-color;
+        transform: scale(1.2);
+      }
+      
+      &:hover {
+        background: rgba($primary-color, 0.5);
+      }
+    }
+  }
+}
+
+// --- MODAL PARA IMÁGENES ---
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($black, 0.95);
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  &.is-active {
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: $white;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: $box-shadow-large;
+  }
+  
+  &__image {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    object-fit: contain;
+  }
+  
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba($black, 0.7);
+    color: $white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    
+    &:hover {
+      background: rgba($black, 0.9);
+      transform: scale(1.1);
+    }
+  }
+  
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba($black, 0.7);
+    color: $white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    
+    &:hover {
+      background: rgba($black, 0.9);
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    &--prev {
+      left: 1rem;
+    }
+    
+    &--next {
+      right: 1rem;
+    }
+    
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: translateY(-50%);
+      
+      &:hover {
+        transform: translateY(-50%);
+        background: rgba($black, 0.7);
+      }
+    }
+  }
+  
+  &__counter {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba($black, 0.7);
+    color: $white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
+
+// --- ESTILOS EXISTENTES DEL CARRUSEL DE TESTIMONIOS ---
 .slider-wrapper {
-  // ¡Esta es la clave! Oculta los slides que se desbordan.
   overflow: hidden;
   position: relative;
   
-  // Sombra interior para dar profundidad
   &::before, &::after {
     content: '';
     position: absolute;
@@ -63,48 +290,32 @@
       width: 50px;
     }
   }
-  
-  &::before {
-    left: 0;
-    //background: linear-gradient(to right, $gray-light, transparent);
-  }
-  &::after {
-    right: 0;
-    //background: linear-gradient(to left, $gray-light, transparent);
-  }
 }
 
-// --- Track (El que se mueve) ---
 .slider-track {
   display: flex;
-  // El JS aplica 'transform' y 'transition'
-  will-change: transform; // Optimización de rendimiento
+  will-change: transform;
 }
 
-// --- Slide (Cada item) ---
 .slide {
-  // Definimos el ancho de cada slide
-  flex: 0 0 100%; // Ancho en móvil
-  padding: 2rem 1rem; // Espacio para ver los slides de al lado
+  flex: 0 0 100%;
+  padding: 2rem 1rem;
   
-  @include min-width($breakpoint-sm) {
-    flex-basis: 50%; // 2 slides en pantalla
+  @include min-width($breakpoint-sm) { // Desde pantallas pequeñas en adelante, mostrar 2 testimonios
+    flex-basis: 50%; 
   }
   
-  @include min-width($breakpoint-lg) {
-    flex-basis: 33.333%; // 3 slides en pantalla
+  @include min-width($breakpoint-lg) { // Desde pantallas grandes en adelante, mostrar 3 testimonios
+    flex-basis: 33.333%;
   }
   
   .testimonio-card {
-    // --- Estado por Defecto (Inactivo) ---
     transform: scale(0.9);
     opacity: 0.5;
     filter: blur(2px);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
-  // --- Estado Activo ---
-  // El JS añade esta clase al slide del centro
   &.is-active {
     .testimonio-card {
       transform: scale(1);
@@ -116,7 +327,6 @@
   }
 }
 
-// --- Tarjeta de Testimonio ---
 .testimonio-card {
   background: $white;
   border-radius: $border-radius;
@@ -126,7 +336,7 @@
   width: 100%;
   
   &__rating {
-    color: #FFC107; // Amarillo estrella
+    color: #FFC107;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
   }
@@ -137,8 +347,7 @@
     font-style: italic;
     line-height: 1.6;
     margin-bottom: 2rem;
-    // Forzar altura mínima para alinear tarjetas
-    min-height: 120px; 
+    min-height: 120px;
   }
   
   &__author {
@@ -168,7 +377,6 @@
   }
 }
 
-// --- Controles (Botones y Dots) ---
 .slider-controls {
   display: flex;
   justify-content: center;

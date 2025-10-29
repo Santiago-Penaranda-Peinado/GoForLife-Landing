@@ -391,6 +391,83 @@
           </p>
         </div>
 
+        <!-- Galeria de Imagenes -->
+        <div class="image-gallery-section">
+          <div class="image-gallery">
+            <div class="image-gallery__track">
+              <!-- Slide 1 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/autoservicio.jpg" alt="Máquina dispensadora en centro comercial" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/purificadora-mixta.jpg" alt="Cliente usando dispensador" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/purificadora-agua.jpg" alt="Interior de máquina dispensadora" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 4 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/purificadora-automática.jpeg" alt="Máquina en ubicación estratégica" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 5 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/ventana-automática-pared-2.jpg" alt="Tecnología de purificación" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 6 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/ventana-automática-pared.jpg" alt="Sistema de monedero electrónico" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 7 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/ventana-mixta.jpg" alt="Mantenimiento de equipos" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 8 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/ventana-premium.jpg" alt="Clientes satisfechos" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+              <!-- Slide 9 -->
+              <div class="image-gallery__slide">
+                <div class="image-gallery__image-container">
+                  <img src="/carrusel/ventana-purificadora.jpg" alt="Instalación profesional" class="image-gallery__image" loading="lazy">
+                </div>
+              </div>
+            </div>
+
+            <!-- Controles -->
+            <div class="image-gallery__controls">
+              <button class="image-gallery__btn image-gallery__btn--prev" aria-label="Imagen anterior">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="image-gallery__pagination">
+                <button class="dot is-active" aria-label="Ir a imagen 1"></button>
+                <button class="dot" aria-label="Ir a imagen 2"></button>
+                <button class="dot" aria-label="Ir a imagen 3"></button>
+              </div>
+              <button class="image-gallery__btn image-gallery__btn--next" aria-label="Siguiente imagen">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="slider-wrapper">
           
           <div class="slider-track">
@@ -480,6 +557,23 @@
 
       </div> 
     </section>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div class="image-modal">
+      <div class="image-modal__container">
+        <button class="image-modal__close" aria-label="Cerrar modal">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="image-modal__nav image-modal__nav--prev" aria-label="Imagen anterior">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <img class="image-modal__image" src="" alt="">
+        <button class="image-modal__nav image-modal__nav--next" aria-label="Siguiente imagen">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="image-modal__counter">1 / 9</div>
+      </div>
+    </div>
 
     <!-- Sección Contacto -->
     <section class="contact-section" id="contacto">

@@ -5,6 +5,7 @@ import { initScrollAnimations } from './js/modules/animations.js';
 import { initTestimonials } from './js/modules/testimonios.js';
 import { initTecnologiaEnhanced } from './js/modules/tecnologia-enhanced.js';
 import { initContactAnimations } from './js/modules/contact-animations.js';
+import { initImageGallery } from './js/modules/image-gallery.js';
 
 // Mantenemos el preloader existente
 const initPreloader = () => {
@@ -163,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initTestimonials();
   initTecnologiaEnhanced();
   initContactAnimations();
+  initImageGallery();
   
   // Inicializar animaciones de las secciones que acabamos de mejorar
   initBenefitsAnimations();
