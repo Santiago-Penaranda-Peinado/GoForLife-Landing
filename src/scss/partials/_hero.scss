@@ -27,52 +27,35 @@
     background: $black;
   }
 
-  // Versión móvil del contenedor de video
+  // Versión móvil del contenedor de video - AHORA CON ASPECT RATIO CUADRADO
   @include max-width($breakpoint-lg - 1) {
     display: block;
     width: 100%;
-    height: 132px; // Altura fija para móvil
+    height: 0;
+    padding-bottom: 100%; // = (1900/1900)*100% para video cuadrado 1:1
     background: $black;
-    
-    // Overlay para mejorar legibilidad del texto en móvil
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
+    position: relative;
   }
 }
 
 .hero__video {
+  // Estilos base para ambos dispositivos
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: videoFadeIn 1.5s ease forwards 0.3s;
+
+  // Versión desktop
   @include desktop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain; // Mantiene el video completo sin recortes en desktop
-    
-    // Efecto de carga suave
-    opacity: 0;
-    animation: videoFadeIn 1.5s ease forwards 0.3s;
+    object-fit: contain; // Mantiene el video completo sin recortes
   }
 
-  // Versión móvil del video
+  // Versión móvil - AHORA TAMBIÉN CON CONTAIN
   @include max-width($breakpoint-lg - 1) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; // En móvil usamos cover para que llene la pantalla
-    
-    // Efecto de carga suave
-    opacity: 0;
-    animation: videoFadeIn 1.5s ease forwards 0.3s;
+    object-fit: contain; // Muestra el video completo sin recortes
   }
 }
 
@@ -84,7 +67,7 @@
 
 // --- ELIMINAMOS EL SLIDER MÓVIL Y MANTENEMOS SOLO EL CONTENIDO ---
 .hero__mobile-background {
-  display: none; // Eliminamos el slider de imágenes
+  display: none;
 }
 
 // --- CONTENEDOR Y CONTENIDO PARA AMBAS VERSIONES ---
@@ -92,7 +75,6 @@
   position: relative;
   z-index: 3;
   
-  // Ahora también se muestra en desktop
   @include desktop {
     display: block;
     position: absolute;
@@ -100,6 +82,12 @@
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  // En móvil, el contenedor ya es relativo por defecto
+  @include max-width($breakpoint-lg - 1) {
+    // Podemos agregar un margen superior si es necesario para separar del video
+    // margin-top: 2rem;
   }
 }
 
@@ -128,7 +116,6 @@
       letter-spacing: -0.02em;
       max-width: 800px;
       
-      // Animación para desktop
       opacity: 0;
       transform: translateY(20px);
       animation: heroContentFadeIn 1s ease 0.5s forwards;
@@ -143,7 +130,6 @@
       margin-right: auto;
       line-height: 1.6;
       
-      // Animación para desktop
       opacity: 0;
       transform: translateY(20px);
       animation: heroContentFadeIn 1s ease 0.7s forwards;
@@ -155,7 +141,6 @@
       justify-content: center;
       flex-wrap: wrap;
       
-      // Animación para desktop
       opacity: 0;
       transform: translateY(20px);
       animation: heroContentFadeIn 1s ease 0.9s forwards;
@@ -211,12 +196,14 @@
     }
   }
 
-  // Versión móvil del contenido (mantenemos tus estilos originales)
+  // Versión móvil del contenido
   @include max-width($breakpoint-lg - 1) {
+    // En móvil, el contenido va después del video, así que ajustamos el padding
+    padding: 2rem 0 3rem 0;
+    min-height: auto; // No necesitamos min-height 100vh en móvil
+    
     .hero__title {
-      color: $white;
       margin-bottom: 1.5rem;
-      @include text-shadow;
       font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 700;
       line-height: 1.1;
@@ -227,7 +214,6 @@
     }
 
     .hero__description {
-      color: rgba($white, 0.95);
       margin-bottom: 2.5rem;
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       max-width: 600px;
@@ -281,17 +267,18 @@
         padding: 1rem 2rem;
         font-weight: 600;
         letter-spacing: 0.5px;
+        color: $white;
       }
       
       .btn--outline {
-        border: 2px solid rgba($white, 0.8);
+        border: 2px solid $accent-color;
         background: transparent;
-        color: $white;
+        color: $accent-color;
         padding: calc(1rem - 2px) calc(2rem - 2px);
         
         &:hover {
-          background: rgba($white, 0.1);
-          border-color: $white;
+          background: rgba($accent-color, 0.1);
+          border-color: darken($accent-color, 10%);
         }
       }
     }

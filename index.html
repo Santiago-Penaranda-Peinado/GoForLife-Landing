@@ -121,7 +121,11 @@
       <section id="hero" class="hero">
           <div class="hero__background-container">
               <video class="hero__video" playsinline autoplay muted loop poster="/hero/goforlife-hero-poster.jpg">
-                  <source src="/hero/goforlife-hero-background-1900x600.mp4" type="video/mp4">
+                  <!-- Video para desktop -->
+                  <source src="/hero/goforlife-hero-background-1900x600.mp4" media="(min-width: 992px)" type="video/mp4">
+                  <!-- Video para móvil -->
+                  <source src="/hero/banner-responsive-gfl.mp4" media="(max-width: 991px)" type="video/mp4">
+                  <!-- Fallback -->
                   Tu navegador no soporta el elemento video.
               </video>
               <div class="hero__overlay"></div>
