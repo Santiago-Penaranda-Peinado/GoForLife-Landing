@@ -21,3 +21,29 @@
 @use 'partials/contact';
 @use 'partials/footer';
 @use 'partials/floating-buttons';
+
+// Estilos para partículas
+#particles-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10000; // Un z-index menor que el preloader (9999) pero mayor que el contenido
+  pointer-events: none !important;
+  
+  canvas {
+    pointer-events: none !important;
+  }
+}
+
+// Asegurar que el contenido esté por encima de las partículas
+#app {
+  position: relative;
+  z-index: 9999;
+}
+
+// El preloader debe estar por encima de todo
+#preloader {
+  z-index: 10000;
+}

@@ -1,8 +1,10 @@
 // src/js/modules/animations.js
 
 export const initScrollAnimations = () => {
-  // Seleccionamos las tarjetas de ambas secciones
-  const animatedElements = document.querySelectorAll('.benefit-card, .model-card, .feature-item, .contact-info, .contact-form-wrapper');
+  // Seleccionamos las tarjetas de ambas secciones + el nuevo banner
+  const animatedElements = document.querySelectorAll(
+    '.benefit-card, .model-card, .feature-item, .contact-info, .contact-form-wrapper, .experience-banner'
+  );
   
   if (animatedElements.length === 0) return;
 

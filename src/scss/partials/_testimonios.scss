@@ -75,7 +75,7 @@
   &__image-container {
     position: relative;
     width: 100%;
-    padding-bottom: 100%; // Aspect ratio 1:1 (cuadrado)
+    padding-bottom: 75%; // Cambié de 100% a 75% para hacerlas más rectangulares y compactas
     border-radius: $border-radius;
     overflow: hidden;
     box-shadow: $box-shadow-medium;
@@ -110,12 +110,12 @@
   
   &__btn {
     @include button-reset;
-    width: 50px;
-    height: 50px;
+    width: 40px; // Reducido de 50px
+    height: 40px; // Reducido de 50px
     border-radius: 50%;
     background: $white;
     color: $primary-color;
-    font-size: 1.1rem;
+    font-size: 1rem; // Reducido de 1.1rem
     box-shadow: $box-shadow-medium;
     transition: all $transition-speed-normal ease;
     z-index: 10;
@@ -139,8 +139,8 @@
     gap: 0.75rem;
     
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 10px; // Reducido de 12px
+      height: 10px; // Reducido de 12px
       border-radius: 50%;
       background: rgba($primary-color, 0.2);
       border: none;

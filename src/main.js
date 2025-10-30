@@ -7,6 +7,125 @@ import { initTecnologiaEnhanced } from './js/modules/tecnologia-enhanced.js';
 import { initContactAnimations } from './js/modules/contact-animations.js';
 import { initImageGallery } from './js/modules/image-gallery.js';
 
+
+// Sistema de partículas simple
+const initParticles = () => {
+  // Esperar a que tsparticles esté disponible globalmente desde el CDN
+  if (typeof window.tsParticles === 'undefined') {
+    console.log('tsParticles no está disponible aún, reintentando...');
+    setTimeout(initParticles, 500);
+    return;
+  }
+
+  try {
+    const config = {
+      particles: {
+        number: {
+          value: window.innerWidth < 768 ? 30 : 80,
+          density: {
+            enable: true,
+            value_area: window.innerWidth < 768 ? 400 : 2800
+          }
+        },
+        color: {
+          value: ["#000000", "#FF6600", "#FF3300", "#FF9900"]
+        },
+        shape: {
+          type: "char",
+          character: [
+            {
+              value: ["🦇", "👻", "💀", "🕷️"],
+              font: "Arial",
+              style: "",
+              weight: "400"
+            },
+            {
+              value: ["🎃", "😈", "⚰️", "🧙"],
+              font: "Arial",
+              style: "",
+              weight: "400"
+            }
+          ]
+        },
+        opacity: {
+          value: 0.9,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.6,
+            sync: false
+          }
+        },
+        size: {
+          value: window.innerWidth < 768 ? 14 : 18,
+          random: {
+            enable: true,
+            minimumValue: 10
+          },
+          anim: {
+            enable: true,
+            speed: 4,
+            size_min: 0.3,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: window.innerWidth < 768 ? 2 : 3,
+          direction: "bottom-right",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: true,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: window.innerWidth >= 768,
+            mode: "bubble"
+          },
+          onclick: {
+            enable: window.innerWidth >= 768,
+            mode: "repulse"
+          },
+          resize: true
+        },
+        modes: {
+          bubble: {
+            distance: 100,
+            size: window.innerWidth < 768 ? 8 : 12,
+            duration: 0.3,
+            opacity: 0.8,
+            speed: 3
+          },
+          repulse: {
+            distance: 100,
+            duration: 0.4
+          }
+        }
+      },
+      retina_detect: true,
+      background: {
+        color: "transparent"
+      }
+    };
+
+    window.tsParticles.load("particles-container", config);
+    console.log('🎃 Partículas cargadas exitosamente!');
+    
+  } catch (error) {
+    console.warn('Error cargando partículas:', error);
+  }
+};
+
 // Mantenemos el preloader existente
 const initPreloader = () => {
   const preloader = document.getElementById('preloader');
@@ -63,6 +182,8 @@ const initPreloader = () => {
         preloader.addEventListener('transitionend', () => {
           setTimeout(() => {
             preloader.remove();
+            // INICIALIZAR PARTÍCULAS DESPUÉS DE QUE EL PRELOADER SE REMUEVE
+            initParticles();
           }, 1000);
         });
       }, 600);
@@ -88,6 +209,8 @@ const initPreloader = () => {
         
         setTimeout(() => {
           preloader.classList.add('loaded');
+          // INICIALIZAR PARTÍCULAS SI SE FORZA EL PRELOADER
+          initParticles();
         }, 500);
       }
     }, 3000);
@@ -98,6 +221,8 @@ const initPreloader = () => {
       console.warn('Preloader forzado a ocultarse por timeout.');
       clearInterval(progressInterval);
       preloader.classList.add('loaded');
+      // INICIALIZAR PARTÍCULAS EN TIMEOUT
+      initParticles();
     }
   }, 8000);
 };
