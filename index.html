@@ -8,46 +8,57 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5T6M4MDV');</script>
   <!-- End Google Tag Manager -->
-  <!-- Global site tag (gtag.js) - Google Ads -->
+  
+  <!-- Google tag (gtag.js) - Google Ads (Nueva etiqueta del jefe) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17575125653"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17575125653');
+  </script>
+  
+  <!-- Global site tag (gtag.js) - Google Ads (Etiqueta existente) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10959842291"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    // ID principal recibido (install) y adicional usado por los eventos
-    gtag('config', 'AW-10959842291');
-    // Aseguramos que la otra propiedad usada en los snippets esté configurada
-    gtag('config', 'AW-17575125653');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} 
+      gtag('js', new Date());
+      // ID principal recibido (install) y adicional usado por los eventos
+      gtag('config', 'AW-10959842291');
+      // Aseguramos que la otra propiedad usada en los snippets esté configurada
+      gtag('config', 'AW-17575125653');
   </script>
 
   <!-- Conversion helper functions (WhatsApp & Call) -->
   <script>
-    function gtag_report_conversion_whatsapp(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.open(url, '_blank');
-        }
-      };
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
-        'event_callback': callback
-      });
-      return false;
-    }
+      function gtag_report_conversion_whatsapp(url) {
+          var callback = function () {
+              if (typeof(url) != 'undefined') {
+                  window.open(url, '_blank');
+              }
+          };
+          gtag('event', 'conversion', {
+              'send_to': 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
+              'event_callback': callback
+          });
+          return false;
+      }
 
-    function gtag_report_conversion_call(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.open(url, '_blank');
-        }
-      };
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17575125653/BA5XCJKkxrUbEJXFvLxB',
-        'event_callback': callback
-      });
-      return false;
-    }
+      function gtag_report_conversion_call(url) {
+          var callback = function () {
+              if (typeof(url) != 'undefined') {
+                  window.open(url, '_blank');
+              }
+          };
+          gtag('event', 'conversion', {
+              'send_to': 'AW-17575125653/BA5XCJKkxrUbEJXFvLxB',
+              'event_callback': callback
+          });
+          return false;
+      }
   </script>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Go For Life México - Plantas Purificadoras de Agua</title>
