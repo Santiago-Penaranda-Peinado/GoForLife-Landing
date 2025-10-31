@@ -25,7 +25,7 @@
     function gtag_report_conversion_whatsapp(url) {
       var callback = function () {
         if (typeof(url) != 'undefined') {
-          window.location = url;
+          window.open(url, '_blank');
         }
       };
       gtag('event', 'conversion', {
@@ -38,7 +38,7 @@
     function gtag_report_conversion_call(url) {
       var callback = function () {
         if (typeof(url) != 'undefined') {
-          window.location = url;
+          window.open(url, '_blank');
         }
       };
       gtag('event', 'conversion', {
@@ -261,7 +261,7 @@
                         </ul>
                     </div>
                     <div class="model-card__cta">
-                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Modelo%20Tradicional,%20" target="_blank" class="btn btn--primary" onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Modelo%20Tradicional,%20');">Quiero Este Modelo</a>
+                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Modelo%20Tradicional,%20" target="_blank" class="btn btn--primary">Quiero Este Modelo</a>
                     </div>
                 </div>
                 
@@ -288,7 +288,7 @@
                         </ul>
                     </div>
                     <div class="model-card__cta">
-                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Ventanas%20Autom%C3%A1ticas,%20" target="_blank" class="btn btn--primary" onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Ventanas%20Autom%C3%A1ticas,%20');">Quiero Este Modelo</a>
+                        <a href="https://api.whatsapp.com/send?phone=+525564989450&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20Ventanas%20Autom%C3%A1ticas,%20" target="_blank" class="btn btn--primary">Quiero Este Modelo</a>
                     </div>
                 </div>
             </div>
@@ -613,7 +613,7 @@
                 </div>
                 <div class="contact-details__content">
                   <span class="contact-details__content-label">Teléfonos de Contacto</span>
-                  <a href="tel:5564989450" class="contact-details__content-value" style="display: block; margin-bottom: 5px;" onclick="return gtag_report_conversion_call('tel:5564989450');">
+                  <a href="tel:5564989450" class="contact-details__content-value" style="display: block; margin-bottom: 5px;">
                     55 6498 9450
                   </a>
                   <a href="tel:5571177249" class="contact-details__content-value" style="display: block; margin-bottom: 5px;">
@@ -666,7 +666,7 @@
                   <span class="contact-details__content-label">WhatsApp</span>
                   <a href="https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20" 
                     class="contact-details__content-value" 
-                    target="_blank" onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20');">
+                    target="_blank">
                     55 7117 7249
                   </a>
                   <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;">
@@ -860,7 +860,7 @@
   <div class="floating-buttons-container">
 
   <a href="https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20" 
-     target="_blank" 
+    target="_blank"
      aria-label="Enviar WhatsApp" 
      rel="noopener noreferrer"
      onclick="return gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=+525571177249&text=Buen%20d%C3%ADa,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20una%20purificadora%20de%20Agua,%20');">
@@ -877,7 +877,7 @@
     </button>
   </a>
 
-  <a href="mailto:info@purificadorasgoforlife.com" aria-label="info@purificadorasgoforlife.com">
+  <a href="mailto:info@purificadorasgoforlife.com" aria-label="info@purificadorasgoforlife.com" target="_blank">
     <button class="btn-floating email">
       <i class="fas fa-envelope"></i>
       <span>info@purificadorasgoforlife.com</span>
