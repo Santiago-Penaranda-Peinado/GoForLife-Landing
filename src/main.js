@@ -9,7 +9,7 @@ import { initImageGallery } from './js/modules/image-gallery.js';
 
 
 // Sistema de partículas simple
-const initParticles = () => {
+/*const initParticles = () => {
   // Esperar a que tsparticles esté disponible globalmente desde el CDN
   if (typeof window.tsParticles === 'undefined') {
     console.log('tsParticles no está disponible aún, reintentando...');
@@ -124,7 +124,7 @@ const initParticles = () => {
   } catch (error) {
     console.warn('Error cargando partículas:', error);
   }
-};
+};*/
 
 // Mantenemos el preloader existente
 const initPreloader = () => {
