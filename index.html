@@ -26,7 +26,7 @@
       function gtag_report_conversion_whatsapp(url) {
           var callback = function () {
               if (typeof(url) != 'undefined') {
-                  window.open(url, '_blank');
+          window.open(url, '_blank');
               }
           };
           gtag('event', 'conversion', {
@@ -39,7 +39,7 @@
       function gtag_report_conversion_call(url) {
           var callback = function () {
               if (typeof(url) != 'undefined') {
-                  window.open(url, '_blank');
+            window.location = url;
               }
           };
           gtag('event', 'conversion', {
@@ -55,7 +55,7 @@
       function gtag_report_conversion_tradicional(url) {
           var callback = function () {
               if (typeof(url) != 'undefined') {
-                  window.open(url, '_blank');
+          window.open(url, '_blank');
               }
           };
           gtag('event', 'conversion', {
@@ -71,7 +71,7 @@
       function gtag_report_conversion_ventanas(url) {
           var callback = function () {
               if (typeof(url) != 'undefined') {
-                  window.open(url, '_blank');
+          window.open(url, '_blank');
               }
           };
           gtag('event', 'conversion', {
