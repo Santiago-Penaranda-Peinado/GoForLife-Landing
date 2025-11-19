@@ -9,8 +9,13 @@ import { initImageGallery } from './js/modules/image-gallery.js';
 import { initPopupBuenFin } from './js/modules/popup-buenfin.js';
 
 
-// Sistema de partículas simple
-/*const initParticles = () => {
+// Sistema de partículas (deshabilitado). Se deja stub para evitar errores de referencia.
+const initParticles = () => {
+  // Partículas desactivadas. Para reactivar, reemplazar este stub por la implementación original.
+};
+
+/* Implementación original guardada abajo para futura reactivación:
+const initParticles = () => {
   // Esperar a que tsparticles esté disponible globalmente desde el CDN
   if (typeof window.tsParticles === 'undefined') {
     console.log('tsParticles no está disponible aún, reintentando...');
