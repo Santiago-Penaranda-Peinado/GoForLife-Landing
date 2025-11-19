@@ -100,10 +100,13 @@
   <link rel="apple-touch-icon" href="/logo/goforlifeMexico-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Carga diferida de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+  <!-- Carga diferida de Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   <script type="module" src="/src/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
   <!-- GTM noscript removido -->
@@ -112,7 +115,7 @@
   <div id="preloader" class="preloader">
     <div class="preloader__container">
       <div class="preloader__logo">
-        <img src="/logo/goforlifeMexico-logo.png" alt="Go For Life México Logo" class="preloader__logo-img">
+        <img src="/logo/goforlifeMexico-logo.png" alt="Go For Life México Logo" class="preloader__logo-img" fetchpriority="high">
       </div>
       <div class="preloader__spinner">
         <div class="spinner-ring"></div>
@@ -285,7 +288,7 @@
                 <!-- Modelo Tradicional -->
                 <div class="model-card">
                     <div class="model-card__image">
-                        <img src="/images/modelo-tradicional.jpg" alt="Modelo Tradicional - Purificadora Go For Life">
+                        <img src="/images/modelo-tradicional.jpg" alt="Modelo Tradicional - Purificadora Go For Life" loading="lazy">
                         <div class="image-wave-mask">
                             <svg viewBox="0 0 500 50" preserveAspectRatio="none">
                                 <path d="M0,0 C150,50 350,0 500,20 L500,50 L0,50 Z" fill="currentColor"></path>
@@ -312,7 +315,7 @@
                 <!-- Modelo Destacado - Con Ribbon Lateral -->
                 <div class="model-card model-card--featured">
                     <div class="model-card__image">
-                        <img src="/images/ventanas-automaticas.jpg" alt="Ventanas Automáticas - Go For Life">
+                        <img src="/images/ventanas-automaticas.jpg" alt="Ventanas Automáticas - Go For Life" loading="lazy">
                         <div class="image-wave-mask">
                             <svg viewBox="0 0 500 50" preserveAspectRatio="none">
                                 <path d="M0,0 C150,50 350,0 500,20 L500,50 L0,50 Z" fill="currentColor"></path>
@@ -359,7 +362,7 @@
           <div class="tecnologia-grid">
             
             <div class="tecnologia__image-content">
-              <img src="/images/ventanas-despachadoras-de-agua.webp" alt="Ventanas Despachadoras de Agua Go For Life">
+              <img src="/images/ventanas-despachadoras-de-agua.webp" alt="Ventanas Despachadoras de Agua Go For Life" loading="lazy">
             </div>
 
             <div class="tecnologia__features-content">
@@ -929,5 +932,7 @@
   </a>
 
 </div>
+<!-- tsparticles script comentado: descomentar si se reactivan partículas -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script> -->
 </body>
 </html>
