@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5T6M4MDV');</script>
-  <!-- End Google Tag Manager -->
+  <!-- GTM removido: usando solo gtag.js para Ads -->
   
     <!-- Google tag (gtag.js) - Consolidated -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17575125653"></script>
@@ -17,68 +11,81 @@
       gtag('js', new Date());
       // Primary property
       gtag('config', 'AW-17575125653');
-      // Additional property also used by events
-      gtag('config', 'AW-10959842291');
+      // Cuenta Ads anterior (AW-10959842291) desactivada para evitar duplicados.
+      // REACTIVAR si se necesita medir nuevamente en la cuenta vieja:
+      // gtag('config', 'AW-10959842291');
     </script>
 
   <!-- Conversion helper functions (WhatsApp & Call) -->
   <script>
       function gtag_report_conversion_whatsapp(url) {
-          var callback = function () {
-              if (typeof(url) != 'undefined') {
-          window.open(url, '_blank');
-              }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
-              'event_callback': callback
-          });
-          return false;
+        if (window.__conv_whatsapp) return false;
+        window.__conv_whatsapp = true;
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.open(url, '_blank');
+          }
+        };
+        gtag('event', 'conversion', {
+          send_to: 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
+          event_callback: callback,
+          event_timeout: 2000
+        });
+        return false;
       }
 
       function gtag_report_conversion_call(url) {
-          var callback = function () {
-              if (typeof(url) != 'undefined') {
+        if (window.__conv_call) return false;
+        window.__conv_call = true;
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
             window.location = url;
-              }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-17575125653/BA5XCJKkxrUbEJXFvLxB',
-              'event_callback': callback
-          });
-          return false;
+          }
+        };
+        gtag('event', 'conversion', {
+          send_to: 'AW-17575125653/BA5XCJKkxrUbEJXFvLxB',
+          event_callback: callback,
+          event_timeout: 2000
+        });
+        return false;
       }
   </script>
   
   <!-- Event snippet for Contacto Tradicional conversion page -->
   <script>
       function gtag_report_conversion_tradicional(url) {
-          var callback = function () {
-              if (typeof(url) != 'undefined') {
-          window.open(url, '_blank');
-              }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-17575125653/mZbUCL_M2r0bEJXFvLxB',
-              'event_callback': callback
-          });
-          return false;
+        if (window.__conv_tradicional) return false;
+        window.__conv_tradicional = true;
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.open(url, '_blank');
+          }
+        };
+        gtag('event', 'conversion', {
+          send_to: 'AW-17575125653/mZbUCL_M2r0bEJXFvLxB',
+          event_callback: callback,
+          event_timeout: 2000
+        });
+        return false;
       }
   </script>
   
   <!-- Event snippet for Contacto Ventanas conversion page -->
   <script>
       function gtag_report_conversion_ventanas(url) {
-          var callback = function () {
-              if (typeof(url) != 'undefined') {
-          window.open(url, '_blank');
-              }
-          };
-          gtag('event', 'conversion', {
-              'send_to': 'AW-17575125653/I2gVCMLM2r0bEJXFvLxB',
-              'event_callback': callback
-          });
-          return false;
+        if (window.__conv_ventanas) return false;
+        window.__conv_ventanas = true;
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.open(url, '_blank');
+          }
+        };
+        gtag('event', 'conversion', {
+          send_to: 'AW-17575125653/I2gVCMLM2r0bEJXFvLxB',
+          event_callback: callback,
+          event_timeout: 2000
+        });
+        return false;
       }
   </script>
   
@@ -94,10 +101,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5T6M4MDV"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+  <!-- GTM noscript removido -->
   
   <!-- Preloader -->
   <div id="preloader" class="preloader">

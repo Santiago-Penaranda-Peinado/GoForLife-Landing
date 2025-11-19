@@ -83,7 +83,7 @@ try {
     $mail->send();
     
     // Redirigir a la página de agradecimiento
-    header('Location: /gracias.html');
+    header('Location: /gracias.html?estado=exito');
     exit();
 
 } catch (Exception $e) {

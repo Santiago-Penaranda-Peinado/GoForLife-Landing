@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5T6M4MDV');</script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- Google tag (gtag.js) - Google Ads (Nueva etiqueta del jefe) -->
+    <!-- GTM removido: se mantiene gtag directo -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17575125653"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'AW-17575125653');
-    </script>
-    
-    <!-- Global site tag (gtag.js) - Google Ads (Etiqueta existente) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10959842291"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);} 
-        gtag('js', new Date());
-        gtag('config', 'AW-10959842291');
-        gtag('config', 'AW-17575125653');
-    </script>
-    
-    <!-- Event snippet for Contacto Texcoco conversion page -->
-    <script>
-        gtag('event', 'conversion', {'send_to': 'AW-17575125653/HU6yCL6f0rUbEJXFvLxB'});
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Configuramos ambas cuentas limpiamente
+    gtag('config', 'AW-17575125653'); // Cuenta principal activa
+    // Cuenta vieja desactivada para prevenir conteo doble.
+    // Para reactivar eliminar comentario:
+    // gtag('config', 'AW-10959842291');
+
+      // --- LÓGICA ANTI-DUPLICADOS (Refresh) ---
+      const params = new URLSearchParams(window.location.search);
+      
+      if (params.get('estado') === 'exito') {
+          // Protección adicional: evita doble disparo si el usuario regresa con bfcache
+          if (!sessionStorage.getItem('lead_conversion_sent')) {
+              gtag('event', 'conversion', {'send_to': 'AW-17575125653/HU6yCL6f0rUbEJXFvLxB'});
+              sessionStorage.setItem('lead_conversion_sent', '1');
+              console.log("Conversión Lead Enviada.");
+          } else {
+              console.log("Conversión ya enviada en esta sesión.");
+          }
+
+          // Limpiamos la URL para evitar re-conteo
+          const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+          window.history.replaceState({path: newUrl}, '', newUrl);
+      }
     </script>
     
     <meta charset="UTF-8">
@@ -49,10 +49,7 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white h-full flex items-center justify-center p-6">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5T6M4MDV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- GTM noscript removido -->
 
     <div class="bg-gray-800 p-8 md:p-12 rounded-2xl shadow-2xl max-w-lg w-full text-center border border-gray-700">
         
@@ -88,6 +85,11 @@
                 window.location.href = '/'; 
             }
         }, 1000);
+
+        // Limpieza adicional si se navegó sin parámetro
+        if (!params.get('estado')) {
+            sessionStorage.removeItem('lead_conversion_sent');
+        }
     </script>
 
 </body>
