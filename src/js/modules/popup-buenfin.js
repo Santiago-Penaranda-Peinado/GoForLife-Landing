@@ -5,7 +5,7 @@ export function initPopupBuenFin() {
   try {
     // Configuración rápida: desactivar por fecha o con flag
     // Ajusta START_DATE y END_DATE a las fechas del Buen Fin (hora local CDMX -06:00)
-    const POPUP_ENABLED = true; // cámbialo a false para apagarlo manualmente
+    const POPUP_ENABLED = false; // cámbialo a false para apagarlo manualmente
     const START_DATE = null; // ej: new Date('2025-11-15T00:00:00-06:00')
     const END_DATE = null;   // ej: new Date('2025-11-18T23:59:59-06:00')
 
