@@ -54,18 +54,33 @@
   <!-- Event snippet for Contacto Tradicional conversion page -->
   <script>
       function gtag_report_conversion_tradicional(url) {
-        if (window.__conv_tradicional) return false;
-        window.__conv_tradicional = true;
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.open(url, '_blank');
+        // Protección mejorada: verificar si ya se disparó en los últimos 3 segundos
+        var now = Date.now();
+        if (window.__conv_tradicional_time && (now - window.__conv_tradicional_time) < 3000) {
+          console.log('Conversión Tradicional: ya disparada recientemente, ignorando');
+          window.open(url, '_blank'); // Abrir WhatsApp de todas formas
+          return false;
+        }
+        
+        window.__conv_tradicional_time = now;
+        console.log('Conversión Tradicional: disparando evento');
+        
+        // Abrir WhatsApp inmediatamente
+        window.open(url, '_blank');
+        
+        // Intentar registrar conversión (si gtag está disponible)
+        if (typeof gtag !== 'undefined') {
+          try {
+            gtag('event', 'conversion', {
+              send_to: 'AW-17575125653/mZbUCL_M2r0bEJXFvLxB'
+            });
+          } catch (e) {
+            console.warn('Error al registrar conversión Tradicional (bloqueador activo?):', e);
           }
-        };
-        gtag('event', 'conversion', {
-          send_to: 'AW-17575125653/mZbUCL_M2r0bEJXFvLxB',
-          event_callback: callback,
-          event_timeout: 2000
-        });
+        } else {
+          console.warn('gtag no disponible (bloqueador de anuncios activo)');
+        }
+        
         return false;
       }
   </script>
@@ -73,18 +88,33 @@
   <!-- Event snippet for Contacto Ventanas conversion page -->
   <script>
       function gtag_report_conversion_ventanas(url) {
-        if (window.__conv_ventanas) return false;
-        window.__conv_ventanas = true;
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.open(url, '_blank');
+        // Protección mejorada: verificar si ya se disparó en los últimos 3 segundos
+        var now = Date.now();
+        if (window.__conv_ventanas_time && (now - window.__conv_ventanas_time) < 3000) {
+          console.log('Conversión Ventanas: ya disparada recientemente, ignorando');
+          window.open(url, '_blank'); // Abrir WhatsApp de todas formas
+          return false;
+        }
+        
+        window.__conv_ventanas_time = now;
+        console.log('Conversión Ventanas: disparando evento');
+        
+        // Abrir WhatsApp inmediatamente
+        window.open(url, '_blank');
+        
+        // Intentar registrar conversión (si gtag está disponible)
+        if (typeof gtag !== 'undefined') {
+          try {
+            gtag('event', 'conversion', {
+              send_to: 'AW-17575125653/I2gVCMLM2r0bEJXFvLxB'
+            });
+          } catch (e) {
+            console.warn('Error al registrar conversión Ventanas (bloqueador activo?):', e);
           }
-        };
-        gtag('event', 'conversion', {
-          send_to: 'AW-17575125653/I2gVCMLM2r0bEJXFvLxB',
-          event_callback: callback,
-          event_timeout: 2000
-        });
+        } else {
+          console.warn('gtag no disponible (bloqueador de anuncios activo)');
+        }
+        
         return false;
       }
   </script>
