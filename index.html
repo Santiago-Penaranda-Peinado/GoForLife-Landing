@@ -19,18 +19,49 @@
   <!-- Conversion helper functions (WhatsApp & Call) -->
   <script>
       function gtag_report_conversion_whatsapp(url) {
-        if (window.__conv_whatsapp) return false;
-        window.__conv_whatsapp = true;
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.open(url, '_blank');
+        // Protección por tiempo para evitar doble clic inmediato
+        var now = Date.now();
+        if (window.__conv_whatsapp_time && (now - window.__conv_whatsapp_time) < 3000) {
+          console.log('Conversión WhatsApp: ya disparada recientemente, ignorando');
+          if (typeof url !== 'undefined') window.open(url, '_blank');
+          return false;
+        }
+
+        // Generar transaction_id único
+        var txId = 'whatsapp-' + now + '-' + Math.random().toString(36).slice(2, 8);
+
+        // Persistencia en sesión para dedup adicional
+        try {
+          var sentTx = JSON.parse(sessionStorage.getItem('gfl_sent_conversions') || '[]');
+          if (!sentTx.includes(txId)) {
+            sentTx.push(txId);
+            if (sentTx.length > 50) sentTx = sentTx.slice(-50);
+            sessionStorage.setItem('gfl_sent_conversions', JSON.stringify(sentTx));
           }
-        };
-        gtag('event', 'conversion', {
-          send_to: 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
-          event_callback: callback,
-          event_timeout: 2000
-        });
+        } catch (e) {
+          console.warn('No se pudo persistir transaction_id en sessionStorage:', e);
+        }
+
+        window.__conv_whatsapp_time = now;
+        console.log('Conversión WhatsApp: disparando evento con transaction_id', txId);
+
+        // Abrir WhatsApp inmediatamente
+        if (typeof url !== 'undefined') window.open(url, '_blank');
+
+        // Intentar registrar conversión si gtag está disponible
+        if (typeof gtag !== 'undefined') {
+          try {
+            gtag('event', 'conversion', {
+              send_to: 'AW-17575125653/SZa7CLuf0rUbEJXFvLxB',
+              transaction_id: txId
+            });
+          } catch (e) {
+            console.warn('Error al registrar conversión WhatsApp (bloqueador activo?):', e);
+          }
+        } else {
+          console.warn('gtag no disponible (bloqueador de anuncios activo)');
+        }
+
         return false;
       }
 
@@ -61,18 +92,37 @@
           window.open(url, '_blank'); // Abrir WhatsApp de todas formas
           return false;
         }
-        
+
+        // Generar transaction_id único para deduplicación en Google Ads
+        var txId = 'tradicional-' + now + '-' + Math.random().toString(36).slice(2, 8);
+
+        // Deduplicación adicional por sesión: si ya vimos este txId, no reenviar
+        try {
+          var sentTx = JSON.parse(sessionStorage.getItem('gfl_sent_conversions') || '[]');
+          if (sentTx.includes(txId)) {
+            console.log('Tradicional: transaction_id ya registrado en sesión, no se reenvía');
+          } else {
+            sentTx.push(txId);
+            // Mantener lista acotada a últimos 50
+            if (sentTx.length > 50) sentTx = sentTx.slice(-50);
+            sessionStorage.setItem('gfl_sent_conversions', JSON.stringify(sentTx));
+          }
+        } catch (e) {
+          console.warn('No se pudo persistir transaction_id en sessionStorage:', e);
+        }
+
         window.__conv_tradicional_time = now;
-        console.log('Conversión Tradicional: disparando evento');
-        
+        console.log('Conversión Tradicional: disparando evento con transaction_id', txId);
+
         // Abrir WhatsApp inmediatamente
         window.open(url, '_blank');
-        
+
         // Intentar registrar conversión (si gtag está disponible)
         if (typeof gtag !== 'undefined') {
           try {
             gtag('event', 'conversion', {
-              send_to: 'AW-17575125653/mZbUCL_M2r0bEJXFvLxB'
+              send_to: 'AW-17575125653/mZbUCL_M2r0bEJXFvLxB',
+              transaction_id: txId
             });
           } catch (e) {
             console.warn('Error al registrar conversión Tradicional (bloqueador activo?):', e);
@@ -80,7 +130,7 @@
         } else {
           console.warn('gtag no disponible (bloqueador de anuncios activo)');
         }
-        
+
         return false;
       }
   </script>
@@ -95,18 +145,36 @@
           window.open(url, '_blank'); // Abrir WhatsApp de todas formas
           return false;
         }
-        
+
+        // Generar transaction_id único para deduplicación en Google Ads
+        var txId = 'ventanas-' + now + '-' + Math.random().toString(36).slice(2, 8);
+
+        // Deduplicación adicional por sesión
+        try {
+          var sentTx = JSON.parse(sessionStorage.getItem('gfl_sent_conversions') || '[]');
+          if (sentTx.includes(txId)) {
+            console.log('Ventanas: transaction_id ya registrado en sesión, no se reenvía');
+          } else {
+            sentTx.push(txId);
+            if (sentTx.length > 50) sentTx = sentTx.slice(-50);
+            sessionStorage.setItem('gfl_sent_conversions', JSON.stringify(sentTx));
+          }
+        } catch (e) {
+          console.warn('No se pudo persistir transaction_id en sessionStorage:', e);
+        }
+
         window.__conv_ventanas_time = now;
-        console.log('Conversión Ventanas: disparando evento');
-        
+        console.log('Conversión Ventanas: disparando evento con transaction_id', txId);
+
         // Abrir WhatsApp inmediatamente
         window.open(url, '_blank');
-        
+
         // Intentar registrar conversión (si gtag está disponible)
         if (typeof gtag !== 'undefined') {
           try {
             gtag('event', 'conversion', {
-              send_to: 'AW-17575125653/I2gVCMLM2r0bEJXFvLxB'
+              send_to: 'AW-17575125653/I2gVCMLM2r0bEJXFvLxB',
+              transaction_id: txId
             });
           } catch (e) {
             console.warn('Error al registrar conversión Ventanas (bloqueador activo?):', e);
@@ -114,7 +182,7 @@
         } else {
           console.warn('gtag no disponible (bloqueador de anuncios activo)');
         }
-        
+
         return false;
       }
   </script>
