@@ -1,19 +1,60 @@
-// Popup Buen Fin - Go For Life
-// Crea e inicializa un modal promocional mostrando oferta del Buen Fin
+// Popup Promocional (Buen Fin / Black Friday) - Go For Life
+// Reutiliza estilos y permite alternar textos/campaña con configuración mínima
 
 export function initPopupBuenFin() {
   try {
-    // Configuración rápida: desactivar por fecha o con flag
-    // Ajusta START_DATE y END_DATE a las fechas del Buen Fin (hora local CDMX -06:00)
-    const POPUP_ENABLED = false; // cámbialo a false para apagarlo manualmente
-    const START_DATE = null; // ej: new Date('2025-11-15T00:00:00-06:00')
-    const END_DATE = null;   // ej: new Date('2025-11-18T23:59:59-06:00')
+    // Configuración de campaña
+    // campaign puede ser 'buenfin' o 'blackfriday'
+    const campaign = 'blackfriday';
+    const POPUP_ENABLED = true; // cámbialo a false para apagar manualmente
+    // Ajusta fechas (hora local CDMX -06:00). Déjalas en null para no usar ventana de fechas.
+    const START_DATE = null; // ej: new Date('2025-11-27T00:00:00-06:00')
+    const END_DATE = null;   // ej: new Date('2025-11-28T23:59:59-06:00')
+
+    // Textos por campaña (se reutilizan estilos actuales)
+    const COPY = {
+      buenfin: {
+        id: 'buenFinPopup',
+        storageKey: 'buenFinPopupShown',
+        title: '¡El Buen Fin llegó a <br>Go For Life!',
+        badge: '🎉 OFERTA EXCLUSIVA 🎉',
+        offerTitle: 'Precios Especiales y Promociones Exclusivas',
+        offerSubtitle: '¡Aprovecha hasta!',
+        priceMain: '12 MESES',
+        priceSub: 'SIN INTERESES',
+        features: [
+          'Aprovecha nuestros precios especiales',
+          'Regalos inigualables',
+          'Bonos flexibles de descuento'
+        ],
+        cta: '¡Solicita Información!',
+        terms: '*Válido durante El Buen Fin. Aplican términos y condiciones.'
+      },
+      blackfriday: {
+        id: 'blackFridayPopup',
+        storageKey: 'blackFridayPopupShown',
+        title: '¡Black Friday en <br>Go For Life!',
+        badge: '🔥 BLACK FRIDAY 🔥',
+        offerTitle: 'Descuentos Especiales y Promos Limitadas',
+        offerSubtitle: '¡Solo por Black Friday!',
+        priceMain: 'DESCUENTOS',
+        priceSub: 'HASTA 12 MSI',
+        features: [
+          'Precios especiales por tiempo limitado',
+          'Beneficios exclusivos en tu compra',
+          'Bonos y facilidades de pago'
+        ],
+        cta: '¡Aprovechar Black Friday!',
+        terms: '*Válido durante Black Friday. Aplican términos y condiciones.'
+      }
+    };
+    const cfg = COPY[campaign] || COPY.buenfin;
 
     // Overrides rápidos vía storage (útiles para QA):
-    // localStorage.setItem('buenFinPopupOff', '1') para desactivar sin tocar código
-    // localStorage.setItem('buenFinPopupOn', '1') para forzar mostrar (ignora fechas)
-    const forceOff = typeof localStorage !== 'undefined' && localStorage.getItem('buenFinPopupOff') === '1';
-    const forceOn = typeof localStorage !== 'undefined' && localStorage.getItem('buenFinPopupOn') === '1';
+    // localStorage.setItem('promoPopupOff', '1') para desactivar sin tocar código
+    // localStorage.setItem('promoPopupOn', '1') para forzar mostrar (ignora fechas)
+    const forceOff = typeof localStorage !== 'undefined' && localStorage.getItem('promoPopupOff') === '1';
+    const forceOn = typeof localStorage !== 'undefined' && localStorage.getItem('promoPopupOn') === '1';
 
     if (!forceOn) {
       if (!POPUP_ENABLED || forceOff) return; // apagado manual o forzado
@@ -22,41 +63,39 @@ export function initPopupBuenFin() {
       if (END_DATE instanceof Date && !isNaN(END_DATE) && now > END_DATE) return;
     }
     // Mostrar solo una vez por sesión
-    const storageKey = 'buenFinPopupShown';
+    const storageKey = cfg.storageKey;
     const alreadyShown = sessionStorage.getItem(storageKey);
     if (alreadyShown) return;
 
     // Evitar duplicados si el DOM ya lo tiene
-    if (document.getElementById('buenFinPopup')) return;
+    if (document.getElementById(cfg.id)) return;
 
     // Template del popup (HTML)
     const template = document.createElement('div');
     template.innerHTML = `
-      <div class="popup-overlay" id="buenFinPopup" aria-hidden="true" role="dialog" aria-labelledby="buenFinTitle">
+      <div class="popup-overlay ${campaign === 'blackfriday' ? 'popup--blackfriday' : 'popup--buenfin'}" id="${cfg.id}" aria-hidden="true" role="dialog" aria-labelledby="promoPopupTitle">
         <div class="popup-container" role="document">
           <button class="popup-close" id="closePopup" aria-label="Cerrar">&times;</button>
           <div class="popup-header">
-            <div class="popup-badge">🎉 OFERTA EXCLUSIVA 🎉</div>
-            <h2 class="popup-title" id="buenFinTitle">¡El Buen Fin llegó a <br>Go For Life!</h2>
+            <div class="popup-badge">${cfg.badge}</div>
+            <h2 class="popup-title" id="promoPopupTitle">${cfg.title}</h2>
           </div>
           <div class="popup-body">
             <div class="popup-offer">
-              <h3 class="popup-offer-title">Precios Especiales y Promociones Exclusivas</h3>
-              <h3 class="popup-offer-subtitle">¡Aprovecha hasta!</h3>
+              <h3 class="popup-offer-title">${cfg.offerTitle}</h3>
+              <h3 class="popup-offer-subtitle">${cfg.offerSubtitle}</h3>
               <div class="popup-price">
-                12 MESES
-                <small>SIN INTERESES</small>
+                ${cfg.priceMain}
+                <small>${cfg.priceSub}</small>
               </div>
               <ul class="popup-features">
-                <li>Aprovecha nuestros precios especiales</li>
-                <li>Regalos inigualables</li>
-                <li>Bonos flexibles de descuento</li>
+                ${cfg.features.map(f => `<li>${f}</li>`).join('')}
               </ul>
             </div>
             <div class="popup-cta">
-              <a href="#contacto" class="popup-btn">¡Solicita Información!</a>
+              <a href="#contacto" class="popup-btn">${cfg.cta}</a>
             </div>
-            <p class="popup-terms">*Válido durante El Buen Fin. Aplican términos y condiciones.</p>
+            <p class="popup-terms">${cfg.terms}</p>
           </div>
         </div>
       </div>
@@ -65,7 +104,7 @@ export function initPopupBuenFin() {
     // Agregar al body
     document.body.appendChild(template.firstElementChild);
 
-    const overlay = document.getElementById('buenFinPopup');
+    const overlay = document.getElementById(cfg.id);
     const closeBtn = document.getElementById('closePopup');
     const body = document.body;
 

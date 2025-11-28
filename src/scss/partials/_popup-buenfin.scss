@@ -261,3 +261,74 @@
   .popup-features li:before { font-size: 16px; top: 5px; }
   .popup-btn { padding: 11px 25px; font-size: 14px; }
 }
+
+/* =============================
+   Variantes por campaña
+   ============================= */
+
+/* Black Friday: base oscura con acentos rojos */
+.popup-overlay.popup--blackfriday {
+  background: rgba(0, 0, 0, 0.86);
+
+  .popup-container {
+    background: linear-gradient(135deg, #0e0e10 0%, #141418 100%);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+  }
+
+  .popup-close {
+    background: #1f1f22;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    &:hover {
+      background: #ff2a2a;
+      box-shadow: 0 8px 24px rgba(255, 42, 42, 0.45);
+    }
+  }
+
+  .popup-header {
+    background: linear-gradient(135deg, #0d0d0f 0%, #2a0000 100%);
+  }
+
+  .popup-badge {
+    background: #1a1a1d;
+    color: #ff4545;
+    box-shadow: 0 4px 15px rgba(255, 69, 69, 0.3);
+  }
+
+  .popup-title { color: #ffffff; }
+
+  .popup-offer-title,
+  .popup-offer-subtitle {
+    color: #ff4545;
+  }
+
+  .popup-price {
+    background: linear-gradient(135deg, #111113 0%, #1a1a1f 100%);
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(255, 69, 69, 0.15);
+
+    small { color: #ff4545; }
+  }
+
+  .popup-features {
+    li { color: #ddd; }
+    li:before { color: #ff4545; }
+  }
+
+  .popup-btn {
+    background: linear-gradient(135deg, #ff2a2a 0%, #b80000 100%);
+    color: #0d0d0f;
+    box-shadow: 0 8px 25px rgba(255, 42, 42, 0.3);
+    &:hover {
+      background: linear-gradient(135deg, #ff4545 0%, #8f0000 100%);
+      box-shadow: 0 12px 35px rgba(255, 42, 42, 0.45);
+      color: #0d0d0f;
+    }
+  }
+
+  .popup-terms { color: rgba(255, 255, 255, 0.7); }
+}
+
+/* Buen Fin: se mantienen los estilos existentes (rojito y dorado) */
+.popup-overlay.popup--buenfin {
+  /* No overrides necesarios: usa la paleta por defecto de este archivo */
+}
