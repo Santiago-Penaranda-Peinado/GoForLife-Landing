@@ -6,10 +6,15 @@ export function initPopupBuenFin() {
     // Configuración de campaña
     // campaign puede ser 'buenfin' o 'blackfriday'
     const campaign = 'blackfriday';
+    
     const POPUP_ENABLED = true; // cámbialo a false para apagar manualmente
-    // Ajusta fechas (hora local CDMX -06:00). Déjalas en null para no usar ventana de fechas.
-    const START_DATE = null; // ej: new Date('2025-11-27T00:00:00-06:00')
-    const END_DATE = null;   // ej: new Date('2025-11-28T23:59:59-06:00')
+    
+    // Ajusta fechas (hora local CDMX -06:00).
+    // Inicio: Viernes 28 Nov 00:00 AM
+    const START_DATE = new Date('2025-11-28T00:00:00-06:00'); 
+    
+    // Fin: Domingo 30 Nov 23:59:59 PM
+    const END_DATE = new Date('2025-11-30T23:59:59-06:00');
 
     // Textos por campaña (se reutilizan estilos actuales)
     const COPY = {
